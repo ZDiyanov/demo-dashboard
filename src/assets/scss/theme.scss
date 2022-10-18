@@ -1,0 +1,76 @@
+@import 'vuetify/src/styles/settings/_colors';
+@import 'vuetify/src/styles/settings/_variables';
+
+// colors
+$colors: (
+  red: $red,
+  pink: $pink,
+  purple: $purple,
+  deep-purple: $deep-purple,
+  indigo: $indigo,
+  blue: $blue,
+  light-blue: $light-blue,
+  cyan: $cyan,
+  teal: $teal,
+  green: $green,
+  light-green: $light-green,
+  lime: $lime,
+  yellow: $yellow,
+  amber: $amber,
+  orange: $orange,
+  deep-orange: $deep-orange,
+  brown: $brown,
+  blue-grey: $blue-grey,
+  grey: $grey,
+  shades: $shades,
+  primary: map-get($orange, darken-2),
+  secondary: map-get($grey, darken-4),
+  accent: map-get($orange, darken-2),
+  error: map-get($red, darken-1),
+  warning: map-get($yellow, darken-2),
+  info: map-get($grey, darken-3),
+  highlight: map-get($blue, darken-1),
+  success: map-get($green, darken-1),
+  active: linear-gradient(101.62deg, #ffa02f 0%, #ef5131 101.25%)
+);
+
+// colors dropdown
+$colors-dropdown: (
+  charcoal: #35373b,
+  grey: #8f949b,
+  red: #e30034,
+  orange: #ff7900,
+  yellow: #ffb612,
+  green: #51a704,
+  blue: #075ea4,
+  purple: #6d329c
+);
+
+// breakpoints
+$breakpoints: (
+  xs: 420px,
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1920px
+);
+
+// spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.25rem;
+$spacing-xl: 1.5rem;
+
+// text size
+$text-size-xs: 0.5rem;
+$text-size-sm: 0.75rem;
+$text-size-md: 1rem;
+$text-size-lg: 1.25rem;
+$text-size-xl: 1.5rem;
+
+// tables
+$table-min-width: 1088px;
+
+// borders
+$border-radius: 0.125rem;

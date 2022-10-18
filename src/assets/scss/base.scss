@@ -1,0 +1,74 @@
+@import './theme';
+
+html {
+  overflow-y: auto !important;
+
+  &.hide-scroll {
+    overflow-y: hidden !important;
+  }
+}
+
+* {
+  ::selection {
+    background-color: map-deep-get($colors, grey, darken-1);
+    color: map-deep-get($colors, shades, 'white');
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: map-deep-get($colors, grey, lighten-3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: map-deep-get($colors, grey, base);
+
+    &:hover {
+      background: map-deep-get($colors, grey, darken-1);
+    }
+  }
+}
+
+h1 {
+  font-size: $text-size-xl + 0.25rem;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0.4px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
+a, p {
+  font-size: $text-size-sm;
+  line-height: 1;
+}
+
+[data-view] {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.rotated-90 {
+  transform: rotate(90deg);
+}
+
+.rotated-180 {
+  transform: rotate(180deg);
+}
+
+.rotated-270 {
+  transform: rotate(270deg);
+}
+
+.highlighted {
+  color: map-get($colors, primary) !important;
+}
+
+

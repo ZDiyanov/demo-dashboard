@@ -1,0 +1,112 @@
+{
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/airbnb"
+  ],
+  "env": {
+    "node": true,
+    "jest/globals": true
+  },
+  "rules": {
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "vue": "never",
+        "scss": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "indent": "off",
+    "vue/script-indent": "off",
+    "vue/attribute-hyphenation": "off",
+    "vue/html-indent": "off",
+    "vue/html-closing-bracket-spacing": ["error"],
+    "vue/max-attributes-per-line": ["warn", {
+      "singleline": 2,
+      "multiline": {
+        "max": 2,
+        "allowFirstLine": false
+      }
+    }],
+    "max-len": [
+      "warn",
+      {
+        "code": 150
+      }
+    ],
+    "arrow-parens": [
+      "off"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "compat/compat": "warn",
+    "consistent-return": "off",
+    "comma-dangle": "off",
+    "generator-star-spacing": "off",
+    "import/no-unresolved": "error",
+    "import/no-extraneous-dependencies": "off",
+    "no-console": "off",
+    "no-use-before-define": "off",
+    "no-multi-assign": "off",
+    "prefer-template": "off",
+    "promise/param-names": "error",
+    "promise/always-return": "warn",
+    "promise/catch-or-return": "warn",
+    "promise/no-native": "off",
+    "no-shadow": "off",
+    "linebreak-style": 0,
+    "array-bracket-spacing": "off",
+    "function-paren-newline": "off",
+    "camelcase": "off",
+    "no-nested-ternary": "off",
+    "no-case-declarations": "off",
+    "object-curly-newline": [
+      "off"
+    ],
+    "no-param-reassign": "off",
+    "no-unused-vars": "warn",
+    "template-curly-spacing" : "off"
+  },
+  "globals": {
+    "__DEV__": true
+  },
+  "plugins": [
+    "import",
+    "promise",
+    "compat",
+    "jest"
+  ],
+  "settings": {
+    "polyfills": [
+      "Promise",
+      "fetch"
+    ],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      },
+      "node": {
+        "extensions": [".js", ".vue", ".scss", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [{
+    "files": ["*.vue"],
+    "rules": {
+      "indent": "off"
+    }
+  }]
+}
