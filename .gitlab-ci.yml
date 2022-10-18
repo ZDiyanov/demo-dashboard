@@ -11,7 +11,8 @@ build_app:
     - main
   script:
     - npm install
-    - npm run build
+    - npm install yarn -g
+    - yarn build
   cache:
     paths:
       - node_modules/
