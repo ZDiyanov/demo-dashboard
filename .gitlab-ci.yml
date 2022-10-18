@@ -8,7 +8,8 @@ build_app:
   stage: build
   only:
     - merge_requests
-    - main
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
   script:
     - npm install
     - npm install yarn -g
@@ -27,7 +28,8 @@ production:
   stage: deploy
   only:
     - merge_requests
-    - main
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
   script:
     - pip install awscli
     - aws s3 sync ./dist s3://vivahome-admin
