@@ -3,10 +3,9 @@ workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
-
-stages:
-  - build
-  - deploy
+  stages:
+    - build
+    - deploy
 
 # build stage
 build_app:
