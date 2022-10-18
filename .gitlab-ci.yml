@@ -6,9 +6,10 @@ stages:
 build_app:
   image: node:alpine
   stage: build
-  only:
-    - merge_requests
+  # only:
+  #   - merge_requests
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
   script:
     - npm install
@@ -26,9 +27,10 @@ build_app:
 production:
   image: python:alpine
   stage: deploy
-  only:
-    - merge_requests
+  # only:
+  #   - merge_requests
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
   script:
     - pip install awscli
