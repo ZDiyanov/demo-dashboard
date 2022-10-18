@@ -1,3 +1,8 @@
+workflow:
+  name: 'Test Pipeline'
+  include:
+    - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
+
 stages:
   - build
   - deploy
@@ -8,7 +13,6 @@ build_app:
   stage: build
   only:
     - merge_requests
-    - main
   script:
     - npm install
     - npm install yarn -g
@@ -27,7 +31,6 @@ production:
   stage: deploy
   only:
     - merge_requests
-    - main
   script:
     - pip install awscli
     - aws s3 sync ./dist s3://vivahome-admin
