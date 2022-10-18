@@ -7,7 +7,6 @@ build_app:
   image: node:alpine
   stage: build
   only:
-    - merge_requests
     - main
   script:
     - npm install
@@ -27,7 +26,6 @@ production:
   image: python:alpine
   stage: deploy
   only:
-    - merge_requests
     - main
   script:
     - pip install awscli
