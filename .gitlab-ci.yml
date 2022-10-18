@@ -7,10 +7,12 @@ build_app:
   image: node:alpine
   stage: build
   only:
+    - merge_requests
     - main
   script:
     - npm install
-    - npm run build
+    - npm install yarn -g
+    - yarn build
   cache:
     paths:
       - node_modules/
@@ -24,6 +26,7 @@ production:
   image: python:alpine
   stage: deploy
   only:
+    - merge_requests
     - main
   script:
     - pip install awscli
