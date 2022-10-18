@@ -7,7 +7,7 @@ build_app:
   image: node:alpine
   stage: build
   only:
-    - main
+    - merge_requests
   script:
     - npm install
     - npm run build
@@ -24,7 +24,7 @@ production:
   image: python:alpine
   stage: deploy
   only:
-    - main
+    - merge_requests
   script:
     - pip install awscli
     - aws s3 sync ./dist s3://vivahome-admin
