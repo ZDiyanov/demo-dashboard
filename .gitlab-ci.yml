@@ -7,20 +7,17 @@ stages:
 
 # build stage
 build_app:
-  image: node:alpine
+  image: node:lts
   stage: build
   only:
     - main
   before_script:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash
-    - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+    - yarn install
   script:
-    - yarn install --cache-folder .yarn
     - yarn build
   cache:
     paths:
       - node_modules/
-      - .yarn
   artifacts:
     paths:
       - dist/
