@@ -1,6 +1,7 @@
 <template>
   <auth-frame>
     <div class="login-wrap d-flex justify-center align-center">
+      Hello World!
       <v-card class="px-10 py-6">
         <div class="login-wrap__form">
           <v-text-field
