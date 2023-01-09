@@ -42,7 +42,11 @@
             <v-list-item-subtitle>{{ user.position }}</v-list-item-subtitle>
           </v-list-item-content>
 
-          <v-btn icon disabled @click.prevent="redirect('profile')">
+          <v-btn
+            v-if="$ability.can('edit', 'app')"
+            icon disabled
+            @click.prevent="redirect('profile')"
+          >
             <v-icon>mdi-account-cog</v-icon>
           </v-btn>
         </v-list-item>
@@ -52,18 +56,21 @@
 
       <v-list nav dense>
         <template v-for="(group, index) in tabs.groups">
-          <v-list-item-group :key="index" v-if="group.items.length">
-            <v-subheader v-show="!isMinimized">{{ group.label.toUpperCase() }}</v-subheader>
-            <v-list-item
-              v-for="(item, index) in group.items" :key="index"
-              link :disabled="item.disabled"
-              @click="onTabClick(item.slug, item.method)"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ `mdi-${item.icon}` }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>{{ item.label }}</v-list-item-title>
-            </v-list-item>
+          <v-list-item-group :key="index" v-if="group.items.length && $ability.can('view', group.subject)">
+            <v-subheader v-show="!isMinimized">{{ $t(group.slug).toUpperCase() }}</v-subheader>
+            <template v-for="(item, index) in group.items">
+              <v-list-item
+                v-if="!item.action || $ability.can(item.action, group.subject)"
+                :key="index"
+                link :disabled="item.disabled"
+                @click="onTabClick(item.route, item.method)"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ `mdi-${item.icon}` }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ $t(item.slug) }}</v-list-item-title>
+              </v-list-item>
+            </template>
           </v-list-item-group>
         </template>
       </v-list>
@@ -72,16 +79,21 @@
         <v-divider />
 
         <v-list nav dense>
-          <v-list-item
-            v-for="(item, index) in tabs.app" :key="index"
-            link :disabled="item.disabled"
-            @click="onTabClick(item.slug, item.method)"
+          <template
+            v-for="(item, index) in tabs.app"
           >
-            <v-list-item-icon>
-              <v-icon>{{ `mdi-${item.icon}` }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>{{ item.label }}</v-list-item-title>
-          </v-list-item>
+            <v-list-item
+              v-if="!item.action || $ability.can(item.action, 'app')"
+              :key="index"
+              link :disabled="item.disabled"
+              @click="onTabClick(item.route, item.method)"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ `mdi-${item.icon}` }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>{{ $t(item.slug) }}</v-list-item-title>
+            </v-list-item>
+          </template>
         </v-list>
       </template>
     </v-navigation-drawer>
@@ -89,8 +101,8 @@
 </template>
 
 <script>
-  import { isUndef, isNull } from '@/core/utils';
-  import tabs from '@/core/configs/menu';
+  import { isUndef, isNull } from '@/utils';
+  import tabs from '@/configs/menu';
 
   export default {
     data() {

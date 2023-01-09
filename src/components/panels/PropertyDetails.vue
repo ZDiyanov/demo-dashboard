@@ -200,12 +200,12 @@
 
 <script>
   import uid from 'uid';
-  import propertyTypes from '@/core/configs/propertyTypes';
-  import currencies from '@/core/configs/currencies';
-  import constructionTypes from '@/core/configs/constructionTypes';
-  import residentialUnits from '@/core/configs/residentialUnits';
-  import propertyAmendities from '@/core/configs/amendities';
-  import { regions as varnaNeighbourhoods } from '@/core/configs/regions/varna';
+  import propertyTypes from '@/configs/propertyTypes';
+  import currencies from '@/configs/currencies';
+  import constructionTypes from '@/configs/constructionTypes';
+  import residentialUnits from '@/configs/residentialUnits';
+  import propertyAmendities from '@/configs/amendities';
+  import { regions as varnaNeighbourhoods } from '@/configs/regions/varna';
 
   export default {
     name: 'PropertyDetails',

@@ -47,8 +47,8 @@
 </template>
 
 <script>
-  import currencies from '@/core/configs/currencies';
-  import propertyTypes from '@/core/configs/propertyTypes';
+  import currencies from '@/configs/currencies';
+  import propertyTypes from '@/configs/propertyTypes';
 
   export default {
     props: {

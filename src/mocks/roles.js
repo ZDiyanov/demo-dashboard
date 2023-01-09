@@ -4,12 +4,20 @@ export const superAdmin = {
   slug: 'super_admin',
   permissions: [
     {
-      subject: 'dashboard',
-      actions: ['view', 'edit'],
+      subject: 'app',
+      actions: ['view', 'edit', 'list'],
     },
     {
-      subject: 'catalogue',
-      actions: ['view', 'edit'],
+      subject: 'properties',
+      actions: ['view', 'create', 'edit', 'list'],
+    },
+    {
+      subject: 'clients',
+      actions: ['view', 'create', 'edit', 'list'],
+    },
+    {
+      subject: 'brokers',
+      actions: ['view', 'create', 'edit', 'list'],
     },
   ],
 };

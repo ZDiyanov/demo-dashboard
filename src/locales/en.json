@@ -1,0 +1,17 @@
+{
+  "menu_group_general": "General",
+  "menu_group_properties": "Properties",
+  "menu_group_clients": "Clients",
+  "menu_group_brokers": "Brokers",
+  "menu_item_dashboard": "Dashboard",
+  "menu_item_properties_list": "Catalogue",
+  "menu_item_properties_index": "My Properties",
+  "menu_item_property_create": "Create New Property",
+  "menu_item_clients_list": "Client List",
+  "menu_item_clients_index": "My Clients",
+  "menu_item_client_create": "Create New Client",
+  "menu_item_brokers_list": "Broker List",
+  "menu_item_broker_create": "Create New Broker",
+  "menu_item_settings_index": "Settings",
+  "menu_item_action_logout": "Logout"
+}

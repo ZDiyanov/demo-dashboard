@@ -1,0 +1,17 @@
+{
+  "menu_group_general": "Основни",
+  "menu_group_properties": "Обекти",
+  "menu_group_clients": "Клиенти",
+  "menu_group_brokers": "Брокери",
+  "menu_item_dashboard": "Дашборд",
+  "menu_item_properties_list": "Всички обекти",
+  "menu_item_properties_index": "Моите обекти",
+  "menu_item_property_create": "Създай обект",
+  "menu_item_clients_list": "Всички клиенти",
+  "menu_item_clients_index": "Моите клиенти",
+  "menu_item_client_create": "Създай клиент",
+  "menu_item_brokers_list": "Всички брокери",
+  "menu_item_broker_create": "Създай брокер",
+  "menu_item_settings_index": "Настройки",
+  "menu_item_action_logout": "Логаут"
+}
