@@ -2,6 +2,7 @@ export default [
   {
     path: '*',
     meta: {
+      slug: 'view_app_not_found',
       auth: false,
       isAuthView: false,
     },
@@ -11,7 +12,7 @@ export default [
     path: '/',
     name: 'index',
     meta: {
-      label: 'Home',
+      slug: 'view_app_home',
       auth: true,
       isAuthView: false,
     },
@@ -21,7 +22,7 @@ export default [
     path: '/profile',
     name: 'profile',
     meta: {
-      label: 'Profile',
+      slug: 'view_app_profile',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -35,7 +36,7 @@ export default [
     path: '/dashboard',
     name: 'dashboard',
     meta: {
-      label: 'Dashboard',
+      slug: 'view_app_dashboard',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -49,7 +50,7 @@ export default [
     path: '/settings',
     name: 'settings',
     meta: {
-      label: 'Settings',
+      slug: 'view_app_settings',
       auth: true,
       isAuthView: false,
       permissions: [{

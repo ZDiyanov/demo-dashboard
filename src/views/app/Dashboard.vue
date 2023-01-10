@@ -1,5 +1,26 @@
+<script>
+  export default {
+    name: 'Dashboard',
+    data() {
+      return {
+
+      };
+    },
+    computed: {
+      user() {
+        return this.$store.getters['auth/user'];
+      }
+    },
+    metaInfo() {
+      return {
+        title: 'Logged'
+      };
+    },
+  };
+</script>
+
 <template>
-  <logged-frame>
+  <LoggedFrame>
     <template v-slot:actions>
       <v-btn icon>
         <v-icon>mdi-plus</v-icon>
@@ -29,28 +50,8 @@
         </Can>
       </div>
     </div>
-  </logged-frame>
+  </LoggedFrame>
 </template>
-
-<script>
-  export default {
-    data() {
-      return {
-
-      };
-    },
-    computed: {
-      user() {
-        return this.$store.getters['auth/user'];
-      }
-    },
-    metaInfo() {
-      return {
-        title: 'Logged'
-      };
-    },
-  };
-</script>
 
 <style lang="scss" scoped>
   .dashboard {

@@ -3,10 +3,10 @@ export default [
     path: '/login',
     name: 'login',
     meta: {
-      loadState: true,
+      slug: 'view_auth_login',
       auth: false,
       isAuthView: true,
     },
-    component: () => import(/* webpackChunkName: "login" */ '@/views/auth/Login'),
+    component: () => import('@/views/auth/Login'),
   },
 ];

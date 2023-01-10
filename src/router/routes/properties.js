@@ -3,7 +3,7 @@ export default [
     path: '/properties/catalogue',
     name: 'propertiesCatalogue',
     meta: {
-      label: 'Catalogue',
+      slug: 'view_properties_catalogue',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -17,7 +17,7 @@ export default [
     path: '/properties',
     name: 'propertiesIndex',
     meta: {
-      label: 'My Properties',
+      slug: 'view_properties_index',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -28,10 +28,24 @@ export default [
     component: () => import('@/views/properties/Index'),
   },
   {
+    path: '/properties/archive',
+    name: 'propertiesArchive',
+    meta: {
+      slug: 'view_properties_archive',
+      auth: true,
+      isAuthView: false,
+      permissions: [{
+        subject: 'properties',
+        actions: ['list'],
+      }],
+    },
+    component: () => import('@/views/properties/Archive'),
+  },
+  {
     path: '/property/:id',
     name: 'property',
     meta: {
-      label: 'Property',
+      slug: 'view_property',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -46,7 +60,7 @@ export default [
     path: '/property/create',
     name: 'propertyCreate',
     meta: {
-      label: 'Create New Property',
+      slug: 'view_property_create',
       auth: true,
       isAuthView: false,
       permissions: [{

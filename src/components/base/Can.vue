@@ -1,11 +1,6 @@
-<template>
-  <fragment v-if="permitted">
-    <slot />
-  </fragment>
-</template>
-
 <script>
   export default {
+    name: 'Can',
     props: {
       action: {
         type: String,
@@ -24,3 +19,9 @@
     }
   };
 </script>
+
+<template>
+  <fragment v-if="permitted">
+    <slot />
+  </fragment>
+</template>

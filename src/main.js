@@ -13,10 +13,8 @@ import '@/plugins/vuelidate';
 
 import '@/components';
 
-// customize config
 Vue.config.productionTip = false;
 
-// instantiate app
 new Vue({
   router,
   store,

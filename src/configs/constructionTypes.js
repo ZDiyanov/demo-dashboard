@@ -1,27 +1,22 @@
 export default {
   1: {
     id: 1,
-    slug: 'lps',
-    title: 'LPS',
+    slug: 'construction_type_lps',
   },
   2: {
     id: 2,
-    slug: 'brick',
-    title: 'Brick',
+    slug: 'construction_type_brick',
   },
   3: {
     id: 3,
-    slug: 'steel',
-    title: 'Steel',
+    slug: 'construction_type_steel',
   },
   4: {
     id: 4,
-    slug: 'wood',
-    title: 'Wood',
+    slug: 'construction_type_wood',
   },
   5: {
     id: 5,
-    slug: 'container',
-    title: 'Container',
+    slug: 'construction_type_container',
   },
 };

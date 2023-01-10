@@ -1,6 +1,6 @@
 <script>
   export default {
-    name: 'Settings',
+    name: 'PropertiesArchive',
   };
 </script>
 
@@ -8,7 +8,7 @@
   <LoggedFrame>
     <div class="px-10 py-8">
 
-      <h5 class="text-h6">Under Construction - settings index</h5>
+      <h5 class="text-h6">Under Construction - properties archive</h5>
 
     </div>
   </LoggedFrame>

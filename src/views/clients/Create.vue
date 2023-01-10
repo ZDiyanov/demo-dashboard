@@ -1,9 +1,15 @@
+<script>
+  export default {
+    name: 'ClientCreate',
+  };
+</script>
+
 <template>
-  <logged-frame>
+  <LoggedFrame>
     <div class="px-10 py-8">
 
       <h5 class="text-h6">Under Construction - client create</h5>
 
     </div>
-  </logged-frame>
+  </LoggedFrame>
 </template>

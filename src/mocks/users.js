@@ -7,17 +7,23 @@ const { permissions: permissionsE, ...metaE } = editor;
 export const superAdmins = [
   {
     id: 1,
-    firstname: 'Pitar',
-    lastname: 'Radoev',
-    initials: 'PR',
+    name: {
+      first: 'Pitar',
+      middle: null,
+      last: 'Radoev',
+      initials: 'PR',
+    },
     role: metaSA,
     position: 'Owner',
     email: 'pitar.radev@vivahome.bg',
   }, {
     id: 2,
-    firstname: 'Nikolay',
-    lastname: 'Radev',
-    initials: 'NR',
+    name: {
+      first: 'Nikolay',
+      middle: null,
+      last: 'Radev',
+      initials: 'NR',
+    },
     role: metaSA,
     position: 'Owner',
     email: 'niki.radev@vivahome.bg',
@@ -27,9 +33,12 @@ export const superAdmins = [
 export const admins = [
   {
     id: 3,
-    firstname: 'Georgi',
-    lastname: 'Dimitrov',
-    initials: 'GD',
+    name: {
+      first: 'Georgi',
+      middle: null,
+      last: 'Dimitrov',
+      initials: 'GD',
+    },
     role: metaA,
     position: 'Manager',
     email: 'georgi.dimitrov@vivahome.bg',
@@ -39,8 +48,12 @@ export const admins = [
 export const editors = [
   {
     id: 4,
-    firstname: 'Vanesa',
-    lastname: 'Raeva',
+    name: {
+      first: 'Vanesa',
+      middle: null,
+      last: 'Raeva',
+      initials: 'VR',
+    },
     role: metaE,
     position: 'Broker',
     email: 'vanesa.raeva@vivahome.bg',

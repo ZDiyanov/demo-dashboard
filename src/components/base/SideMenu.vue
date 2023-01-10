@@ -1,3 +1,44 @@
+<script>
+  import { isUndef, isNull } from '@/utils';
+  import tabs from '@/configs/menu';
+
+  export default {
+    data() {
+      return {
+        drawer: false,
+        isMinimized: false,
+        tabs,
+      };
+    },
+    computed: {
+      user() {
+        return this.$store.getters['auth/user'];
+      },
+      isDesktop() {
+        return this.$vuetify.breakpoint.mdAndUp;
+      },
+    },
+    methods: {
+      onTabClick(route, method) {
+        if (!isNull(method)) {
+          this[method]();
+          return;
+        }
+
+        if (!isUndef(route)) {
+          this.redirect(route);
+        }
+      },
+      redirect(route) {
+        this.$router.push({ name: route, params: { } });
+      },
+      logout() {
+        return this.$store.dispatch('auth/logout');
+      },
+    },
+  };
+</script>
+
 <template>
   <div>
     <v-app-bar
@@ -34,11 +75,11 @@
 
         <v-list-item class="px-2">
           <v-list-item-avatar color="pink">
-            <span>{{ user.initials }}</span>
+            <span>{{ user.name.initials }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content class="pa-0">
-            <v-list-item-title>{{ user.firstname }} {{ user.lastname }}</v-list-item-title>
+            <v-list-item-title>{{ user.name.first }} {{ user.name.last }}</v-list-item-title>
             <v-list-item-subtitle>{{ user.position }}</v-list-item-subtitle>
           </v-list-item-content>
 
@@ -99,44 +140,3 @@
     </v-navigation-drawer>
   </div>
 </template>
-
-<script>
-  import { isUndef, isNull } from '@/utils';
-  import tabs from '@/configs/menu';
-
-  export default {
-    data() {
-      return {
-        drawer: false,
-        isMinimized: false,
-        tabs,
-      };
-    },
-    computed: {
-      user() {
-        return this.$store.getters['auth/user'];
-      },
-      isDesktop() {
-        return this.$vuetify.breakpoint.mdAndUp;
-      },
-    },
-    methods: {
-      onTabClick(route, method) {
-        if (!isNull(method)) {
-          this[method]();
-          return;
-        }
-
-        if (!isUndef(route)) {
-          this.redirect(route);
-        }
-      },
-      redirect(route) {
-        this.$router.push({ name: route, params: { } });
-      },
-      logout() {
-        return this.$store.dispatch('auth/logout');
-      },
-    },
-  };
-</script>

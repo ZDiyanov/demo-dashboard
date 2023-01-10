@@ -62,7 +62,7 @@ export default {
           icon: 'account-group',
           route: 'clientsList',
           method: null,
-          disabled: true,
+          disabled: false,
         },
         {
           id: 6,
@@ -98,7 +98,7 @@ export default {
           icon: 'format-list-text',
           route: 'brokersList',
           method: null,
-          disabled: true,
+          disabled: false,
         },
         {
           id: 9,

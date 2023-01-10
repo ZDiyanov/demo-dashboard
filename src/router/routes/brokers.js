@@ -3,7 +3,7 @@ export default [
     path: '/brokers',
     name: 'brokersList',
     meta: {
-      label: 'Brokers List',
+      slug: 'view_broker_list',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -14,10 +14,24 @@ export default [
     component: () => import('@/views/brokers/List'),
   },
   {
+    path: '/brokers/archive',
+    name: 'brokersArchive',
+    meta: {
+      slug: 'view_brokers_archive',
+      auth: true,
+      isAuthView: false,
+      permissions: [{
+        subject: 'brokers',
+        actions: ['list'],
+      }],
+    },
+    component: () => import('@/views/brokers/Archive'),
+  },
+  {
     path: '/broker/:id',
     name: 'broker',
     meta: {
-      label: 'Broker',
+      slug: 'view_broker',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -31,7 +45,7 @@ export default [
     path: '/brokers/create',
     name: 'brokerCreate',
     meta: {
-      label: 'Create New Broker',
+      slug: 'view_broker_create',
       auth: true,
       isAuthView: false,
       permissions: [{

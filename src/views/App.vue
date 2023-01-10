@@ -1,18 +1,10 @@
-<template>
-  <v-app>
-    <router-view />
-    <idle-manager />
-    <alerts-manager />
-    <popups-manager />
-  </v-app>
-</template>
-
 <script>
-  import AlertsManager from '@/components/AlertsManager';
-  import IdleManager from '@/components/IdleManager';
-  import PopupsManager from '@/components/PopupsManager';
+  import AlertsManager from '@/components/base/AlertsManager';
+  import IdleManager from '@/components/base/IdleManager';
+  import PopupsManager from '@/components/base/PopupsManager';
 
   export default {
+    name: 'App',
     components: {
       AlertsManager,
       IdleManager,
@@ -47,6 +39,16 @@
     }
   };
 </script>
+
+<template>
+  <v-app>
+    <router-view />
+
+    <IdleManager />
+    <AlertsManager />
+    <PopupsManager />
+  </v-app>
+</template>
 
 <style lang="scss">
   .app-wrapper {

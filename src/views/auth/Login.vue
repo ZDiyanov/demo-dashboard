@@ -1,37 +1,8 @@
-<template>
-  <auth-frame>
-    <div class="login-wrap d-flex justify-center align-center">
-      <v-card class="px-10 py-6">
-        <div class="login-wrap__form">
-          <v-text-field
-            v-model="email"
-            label="Email"
-            required
-            type="email"
-            :autofocus="true"
-          />
-          <v-text-field
-            v-model="password"
-            label="Password"
-            required
-            type="password"
-            :autofocus="true"
-          />
-          <v-btn
-            @click="login"
-          >
-            Login
-          </v-btn>
-        </div>
-      </v-card>
-    </div>
-  </auth-frame>
-</template>
-
 <script>
   import mockedAuth from '@/mocks/auth';
 
   export default {
+    name: 'Login',
     data() {
       return {
         email: '',
@@ -58,6 +29,36 @@
     },
   };
 </script>
+
+<template>
+  <AuthFrame>
+    <div class="login-wrap d-flex justify-center align-center">
+      <v-card class="px-10 py-6">
+        <div class="login-wrap__form">
+          <v-text-field
+            v-model="email"
+            label="Email"
+            required
+            type="email"
+            :autofocus="true"
+          />
+          <v-text-field
+            v-model="password"
+            label="Password"
+            required
+            type="password"
+            :autofocus="true"
+          />
+          <v-btn
+            @click="login"
+          >
+            Login
+          </v-btn>
+        </div>
+      </v-card>
+    </div>
+  </AuthFrame>
+</template>
 
 <style lang="scss" scoped>
   .login-wrap {

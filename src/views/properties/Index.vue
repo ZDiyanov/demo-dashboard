@@ -1,9 +1,29 @@
+<script>
+  import CatalogueGrid from '@/components/CatalogueGrid';
+  import mockedProperties from '@/mocks/properties';
+
+  export default {
+    name: 'PropertiesIndex',
+    components: { CatalogueGrid },
+    data() {
+       return {
+        items: [ ...mockedProperties].splice(0, 1),
+      };
+    },
+    methods: {
+      createProperty() {
+        this.$router.push({ name: 'create' });
+      },
+    },
+  };
+</script>
+
 <template>
-  <logged-frame>
+  <LoggedFrame>
     <template v-slot:actions>
       <v-btn
         elevation="1"
-        @click="CreateProperty"
+        @click="createProperty"
       >
         <v-icon>mdi-home-plus</v-icon>
         Create
@@ -12,31 +32,11 @@
 
     <div class="px-10 py-8">
 
-      <catalogue-grid
+      <CatalogueGrid
         :items="items"
-        show-price
-        show-details
+        show-price show-details
       />
 
     </div>
-  </logged-frame>
+  </LoggedFrame>
 </template>
-
-<script>
-  import CatalogueGrid from '@/components/CatalogueGrid';
-  import mockedProperties from '@/mocks/properties';
-
-  export default {
-    components: { CatalogueGrid },
-    data() {
-       return {
-        items: [ ...mockedProperties].splice(0, 1),
-      };
-    },
-    methods: {
-      CreateProperty() {
-        this.$router.push({ name: 'create' });
-      },
-    },
-  };
-</script>

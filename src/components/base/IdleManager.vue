@@ -1,10 +1,8 @@
-<!-- eslint-disable-next-line vue/valid-template-root -->
-<template />
-
 <script>
   const { VUE_APP_IDLE_TIMEOUT_MINUTES } = process.env;
 
   export default {
+    name: 'IdleManager',
     data() {
       return {
         events: ['click', 'keypress', 'scroll'],
@@ -57,3 +55,6 @@
     },
   };
 </script>
+
+<!-- eslint-disable-next-line vue/valid-template-root -->
+<template />

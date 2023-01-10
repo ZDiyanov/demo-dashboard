@@ -3,7 +3,7 @@ export default [
     path: '/clients/list',
     name: 'clientsList',
     meta: {
-      label: 'Client List',
+      slug: 'view_clients_list',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -17,7 +17,7 @@ export default [
     path: '/clients',
     name: 'clientsIndex',
     meta: {
-      label: 'My Clients',
+      slug: 'view_clients_index',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -28,10 +28,24 @@ export default [
     component: () => import('@/views/clients/Index'),
   },
   {
+    path: '/clients/archive',
+    name: 'clientsArchive',
+    meta: {
+      slug: 'view_clients_archive',
+      auth: true,
+      isAuthView: false,
+      permissions: [{
+        subject: 'clients',
+        actions: ['list'],
+      }],
+    },
+    component: () => import('@/views/clients/Archive'),
+  },
+  {
     path: '/client/:id',
     name: 'client',
     meta: {
-      label: 'Client',
+      slug: 'view_client',
       auth: true,
       isAuthView: false,
       permissions: [{
@@ -45,7 +59,7 @@ export default [
     path: '/client/create',
     name: 'clientCreate',
     meta: {
-      label: 'Create New Client',
+      slug: 'view_client_create',
       auth: true,
       isAuthView: false,
       permissions: [{

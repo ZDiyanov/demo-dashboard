@@ -1,5 +1,11 @@
+<script>
+  export default {
+    name: 'Profile',
+  };
+</script>
+
 <template>
-  <logged-frame>
+  <LoggedFrame>
     <template v-slot:actions>
       action list
     </template>
@@ -9,5 +15,5 @@
       <h5 class="text-h6">Under Construction - profile index</h5>
 
     </div>
-  </logged-frame>
+  </LoggedFrame>
 </template>
