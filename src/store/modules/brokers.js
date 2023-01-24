@@ -1,17 +1,17 @@
 import { isObj, isArr } from '@/utils';
 import initialState from '@/store/initialState';
 
-import mockedProperties from '@/mocks/properties';
+import mockedBrokers from '@/mocks/users';
 
 /**
 * @description Is valid
-* @param properties
+* @param brokers
 * @returns {boolean}
 */
-const isValid = (properties) => isObj(properties)
-  && isObj(properties.activeItem)
-  && isArr(properties.items)
-  && isObj(properties.itemsMeta);
+const isValid = (brokers) => isObj(brokers)
+  && isObj(brokers.activeItem)
+  && isArr(brokers.items)
+  && isObj(brokers.itemsMeta);
 
 /**
 * @description Init state
@@ -20,7 +20,7 @@ const isValid = (properties) => isObj(properties)
 */
 const initState = (initialState) => {
   if (!isValid(initialState)) {
-    throw Error('Invalid initial properties state');
+    throw Error('Invalid initial brokers state');
   }
 
   const { activeItem, items, itemsMeta } = initialState;
@@ -45,7 +45,7 @@ const actions = {
   getItems: ({ commit, state }) => {
     const nextState = {
       ...state,
-      items: mockedProperties,
+      items: mockedBrokers,
     };
 
     commit('SET', nextState);
@@ -53,21 +53,21 @@ const actions = {
   getItem: ({ commit, state }, id) => {
     const nextState = {
       ...state,
-      activeItem: mockedProperties.filter((item) => item.id === id)[0],
+      activeItem: mockedBrokers.filter((item) => item.id === id)[0],
     };
 
     commit('SET', nextState);
   },
   reset: ({ commit }) => (
-    commit('SET', initialState.properties)
+    commit('SET', initialState.brokers)
   ),
 };
 
 const mutations = {
-  SET(state, properties) {
-    state.activeItem = properties.activeItem;
-    state.items = properties.items;
-    state.itemsMeta = properties.itemsMeta;
+  SET(state, brokers) {
+    state.activeItem = brokers.activeItem;
+    state.items = brokers.items;
+    state.itemsMeta = brokers.itemsMeta;
   }
 };
 

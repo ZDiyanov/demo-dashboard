@@ -10,8 +10,11 @@ export const clients = [
     isOwner: false,
     isBuyer: true,
     budget: null,
-    email: [],
-    phone: [],
+    email: 'client_1@vivahome.bg',
+    phone: {
+      prefix: '+359',
+      value: 877113307,
+    },
   },
 ];
 

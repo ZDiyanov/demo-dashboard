@@ -28,13 +28,21 @@ export const admin = {
   slug: 'admin',
   permissions: [
     {
-      subject: 'catalogue',
-      actions: ['view'],
+      subject: 'app',
+      actions: ['view', 'edit'],
     },
     {
-      subject: 'dashboard',
-      actions: ['view', 'edit'],
-    }
+      subject: 'properties',
+      actions: ['view', 'list'],
+    },
+    {
+      subject: 'clients',
+      actions: ['view', 'create', 'edit'],
+    },
+    {
+      subject: 'brokers',
+      actions: ['create', 'edit'],
+    },
   ],
 };
 
@@ -44,9 +52,21 @@ export const editor = {
   slug: 'editor',
   permissions: [
     {
-      subject: 'dashboard',
-      actions: ['view'],
-    }
+      subject: 'app',
+      actions: ['view', 'edit', 'list'],
+    },
+    {
+      subject: 'properties',
+      actions: ['view', 'create', 'edit', 'list'],
+    },
+    {
+      subject: 'clients',
+      actions: ['view', 'create', 'edit', 'list'],
+    },
+    {
+      subject: 'brokers',
+      actions: ['create', 'edit'],
+    },
   ],
 };
 

@@ -64,7 +64,7 @@
               <div class="pl-2 text-h6 white--text">{{ propertyTypes[item.details.typeId].title }}</div>
               <v-spacer></v-spacer>
               <v-btn v-if="showStarredBtn" icon>
-                <v-icon class="white--text">mdi-star</v-icon>
+                <v-icon class="white--text">mdi-pencil</v-icon>
               </v-btn>
             </v-card-actions>
           </v-img>

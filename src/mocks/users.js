@@ -11,22 +11,28 @@ export const superAdmins = [
       first: 'Pitar',
       middle: null,
       last: 'Radoev',
-      initials: 'PR',
     },
     role: metaSA,
     position: 'Owner',
     email: 'pitar.radev@vivahome.bg',
+    phone: {
+      prefix: '+359',
+      value: 877113307,
+    },
   }, {
     id: 2,
     name: {
       first: 'Nikolay',
       middle: null,
       last: 'Radev',
-      initials: 'NR',
     },
     role: metaSA,
     position: 'Owner',
     email: 'niki.radev@vivahome.bg',
+    phone: {
+      prefix: '+359',
+      value: 877113307,
+    },
   },
 ];
 
@@ -37,11 +43,14 @@ export const admins = [
       first: 'Georgi',
       middle: null,
       last: 'Dimitrov',
-      initials: 'GD',
     },
     role: metaA,
     position: 'Manager',
     email: 'georgi.dimitrov@vivahome.bg',
+    phone: {
+      prefix: '+359',
+      value: 877113307,
+    },
   },
 ];
 
@@ -52,11 +61,14 @@ export const editors = [
       first: 'Vanesa',
       middle: null,
       last: 'Raeva',
-      initials: 'VR',
     },
     role: metaE,
     position: 'Broker',
     email: 'vanesa.raeva@vivahome.bg',
+    phone: {
+      prefix: '+359',
+      value: 877113307,
+    },
   },
 ];
 

@@ -1,17 +1,17 @@
 import { isObj, isArr } from '@/utils';
 import initialState from '@/store/initialState';
 
-import mockedProperties from '@/mocks/properties';
+import mockedClients from '@/mocks/clients';
 
 /**
 * @description Is valid
-* @param properties
+* @param clients
 * @returns {boolean}
 */
-const isValid = (properties) => isObj(properties)
-  && isObj(properties.activeItem)
-  && isArr(properties.items)
-  && isObj(properties.itemsMeta);
+const isValid = (clients) => isObj(clients)
+  && isObj(clients.activeItem)
+  && isArr(clients.items)
+  && isObj(clients.itemsMeta);
 
 /**
 * @description Init state
@@ -20,7 +20,7 @@ const isValid = (properties) => isObj(properties)
 */
 const initState = (initialState) => {
   if (!isValid(initialState)) {
-    throw Error('Invalid initial properties state');
+    throw Error('Invalid initial clients state');
   }
 
   const { activeItem, items, itemsMeta } = initialState;
@@ -45,7 +45,7 @@ const actions = {
   getItems: ({ commit, state }) => {
     const nextState = {
       ...state,
-      items: mockedProperties,
+      items: mockedClients,
     };
 
     commit('SET', nextState);
@@ -53,21 +53,29 @@ const actions = {
   getItem: ({ commit, state }, id) => {
     const nextState = {
       ...state,
-      activeItem: mockedProperties.filter((item) => item.id === id)[0],
+      activeItem: mockedClients.filter((item) => item.id === id)[0],
+    };
+
+    commit('SET', nextState);
+  },
+  resetActiveItem: ({ commit, state }) => {
+    const nextState = {
+      ...state,
+      activeItem: initialState.clients.activeItem,
     };
 
     commit('SET', nextState);
   },
   reset: ({ commit }) => (
-    commit('SET', initialState.properties)
+    commit('SET', initialState.clients)
   ),
 };
 
 const mutations = {
-  SET(state, properties) {
-    state.activeItem = properties.activeItem;
-    state.items = properties.items;
-    state.itemsMeta = properties.itemsMeta;
+  SET(state, clients) {
+    state.activeItem = clients.activeItem;
+    state.items = clients.items;
+    state.itemsMeta = clients.itemsMeta;
   }
 };
 

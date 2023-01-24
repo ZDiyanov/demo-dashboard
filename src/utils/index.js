@@ -133,6 +133,60 @@ export const eachProp = (obj, callback) => {
 };
 
 /**
+ * @description Extract nexted prop
+ * @param obj
+ * @param keysText
+ * @returns {*}
+ */
+export const extractNestedProp = (obj, keysText) => {
+  const keys = keysText.split('.');
+  const keysLength = keys.length - 1;
+  let keysIndex = 0;
+  let isValidKey = true;
+  let targetObj = { ...obj };
+  let targetProp;
+  let nextTarget;
+
+  if (keys.length > 0) {
+    while (isValidKey) {
+      nextTarget = targetObj[keys[keysIndex]];
+
+      if (keysIndex === keysLength) {
+        targetProp = !isUndef(nextTarget) && !isNull(nextTarget)
+          ? nextTarget
+          : undefined;
+        break;
+      }
+
+      if (!isObj(nextTarget)) {
+        isValidKey = false;
+        break;
+      }
+
+      targetObj = nextTarget;
+      keysIndex += 1;
+    }
+  }
+
+  return targetProp;
+};
+
+/**
+ * @description Debounce
+ * @returns {function}
+ */
+export const debounce = ({ timeout, id }) => {
+  const timers = {};
+
+  return callback => {
+    if (timers[id]) {
+      clearTimeout(timers[id]);
+    }
+    timers[id] = setTimeout(callback, timeout);
+  };
+};
+
+/**
  * @desc Hide page scroll
  */
 export const hidePageScroll = () => {
@@ -144,21 +198,4 @@ export const hidePageScroll = () => {
  */
 export const showPageScroll = () => {
   document.documentElement.classList.remove('hide-scroll');
-};
-
-/**
- * @description Calculate current age
- * @param string
- */
-export const getAge = (date) => {
-  const today = new Date();
-  const birthDate = new Date(date);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age -= 1;
-  }
-
-  return age;
 };

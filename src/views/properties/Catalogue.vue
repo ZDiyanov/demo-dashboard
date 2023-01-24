@@ -1,18 +1,36 @@
 <script>
+  import { mapGetters, mapActions } from 'vuex';
   import CatalogueGrid from '@/components/CatalogueGrid';
-  import mockedProperties from '@/mocks/properties';
+  import BaseDialog from '@/components/dialogs/BaseDialog';
 
   export default {
     name: 'PropertiesCatalogue',
-    components: { CatalogueGrid },
+    components: { CatalogueGrid, BaseDialog },
     data() {
       return {
-        items: mockedProperties,
+        isDialogOn: false,
       };
     },
+    computed: {
+      ...mapGetters(
+        { items: 'properties/items' },
+      ),
+    },
+    created() {
+      this.getProperties();
+    },
     methods: {
+      ...mapActions(
+        { getProperties: 'properties/getItems' },
+      ),
       createProperty() {
         this.$router.push({ name: 'propertyCreate' });
+      },
+      toggleDialog() {
+        this.isDialogOn = !this.isDialogOn;
+      },
+      displayPropertyDetails() {
+        this.isDialogOn = true;
       },
     },
   };
@@ -39,5 +57,12 @@
       />
 
     </div>
+
+    <BaseDialog
+      title="Property" icon="mdi-briefcase"
+      :is-on="isDialogOn" :on-close="toggleDialog"
+    >
+      <template #content>Modal Content</template>
+    </BaseDialog>
   </LoggedFrame>
 </template>

@@ -90,7 +90,7 @@
             </ul>
           </div>
 
-          <div class="mb-2">
+          <div class="mb-2" v-if="$ability.can('list', 'properties')">
             <v-icon small>mdi-map-marker</v-icon>
             <span class="font-weight-bold mr-2">Varna</span>
             <span class="caption">

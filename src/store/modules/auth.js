@@ -37,7 +37,7 @@ const initState = (initialState) => {
     user,
     role,
     permissions,
-    redirects
+    redirects,
   };
 };
 

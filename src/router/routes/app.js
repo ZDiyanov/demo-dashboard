@@ -25,10 +25,10 @@ export default [
       slug: 'view_app_profile',
       auth: true,
       isAuthView: false,
-      permissions: [{
-        subject: 'app',
-        actions: ['view'],
-      }],
+      // permissions: [{
+      //   subject: 'app',
+      //   actions: ['view'],
+      // }],
     },
     component: () => import('@/views/app/Profile'),
   },

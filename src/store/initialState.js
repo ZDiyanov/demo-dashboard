@@ -16,13 +16,19 @@ export default {
   config: {
     languages: [],
   },
-  dataSets: {
-    items: [],
-    setsMeta: {}, // Persist this
-  },
-  currentSet: {
+  properties: {
     activeItem: {},
     items: [],
-    itemsMeta: {}
+    itemsMeta: {},
+  },
+  clients: {
+    activeItem: {},
+    items: [],
+    itemsMeta: {},
+  },
+  brokers: {
+    activeItem: {},
+    items: [],
+    itemsMeta: {},
   },
 };
