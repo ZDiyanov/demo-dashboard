@@ -7,12 +7,16 @@ export const clients = [
       middle: null,
       last: 'Raeva',
     },
+    broker: 1,
     isOwner: false,
     isBuyer: true,
-    budget: null,
+    budget: {
+      value: null,
+      currency: 1,
+    },
     email: 'client_1@vivahome.bg',
     phone: {
-      prefix: '+359',
+      prefix: 359,
       value: 877113307,
     },
   },

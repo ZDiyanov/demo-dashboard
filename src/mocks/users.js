@@ -45,10 +45,10 @@ export const admins = [
       last: 'Dimitrov',
     },
     role: metaA,
-    position: 'Manager',
+    position: 1,
     email: 'georgi.dimitrov@vivahome.bg',
     phone: {
-      prefix: '+359',
+      prefix: 359,
       value: 877113307,
     },
   },
