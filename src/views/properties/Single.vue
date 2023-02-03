@@ -39,17 +39,8 @@
         const nextItem = {
           ...property,
           ...augmentData,
-          details: {
-            ...property.details,
-            ...augmentData.details,
-          },
-          location: {
-            ...property.location,
-            ...augmentData.location,
-          },
         };
 
-        console.log(nextItem);
         this.item = nextItem;
         this.isLoaded = true;
       },
@@ -69,24 +60,26 @@
         <div>
           <v-card class="mr-5">
             <v-img
-              :src="item.details.cover"
+              :src="item.cover"
               class="property-image"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             >
               <v-card-actions>
-                <div class="pl-2 text-h6 white--text">{{ currencies[item.price.currency].symbol }}{{ item.price.amount }}</div>
+                <div class="pl-2 text-h6 white--text">{{ currencies[item.priceCurrencyId].symbol }}{{ item.priceAmount }}</div>
               </v-card-actions>
             </v-img>
           </v-card>
         </div>
 
         <div>
-          <div><h2>{{ propertyTypes[item.details.typeId].title }}</h2></div>
+          <div>
+            <h2>{{ $t(propertyTypes[item.propertyTypeId].slug) }}</h2>
+          </div>
           <div class="subtitle-2 mb-5">
             <ul class="details-list">
-              <li>{{ item.measurements.amount }}m<sup>2</sup></li>
-              <li>{{ item.details.rooms }} bedrooms</li>
-              <li>{{ item.details.baths }} baths</li>
+              <li>{{ item.measurementValue }}m<sup>2</sup></li>
+              <li>{{ item.roomCount }} bedrooms</li>
+              <li>{{ item.bathCount }} baths</li>
             </ul>
           </div>
 
@@ -94,13 +87,13 @@
             <v-icon small>mdi-map-marker</v-icon>
             <span class="font-weight-bold mr-2">Varna</span>
             <span class="caption">
-              {{ `${item.location.street} ${item.location.streetNum}, entrance: ${item.location.entrance}, floor: ${item.location.floor.on}` }}
+              {{ `${item.street} ${item.streetNum}, entrance: ${item.entrance}, floor: ${item.onFloor}` }}
             </span>
           </div>
 
           <div class="mb-8">
             <v-icon>mdi-wrench-outline</v-icon>
-            <span class="ml-1 body-2">{{ $t(constructionTypes[item.details.constructionId].slug) }}</span>
+            <span class="ml-1 body-2">{{ $t(constructionTypes[item.constructionId].slug) }}</span>
           </div>
 
           <div class="amendities-list">

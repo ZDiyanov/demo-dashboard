@@ -1,24 +1,17 @@
 export const clients = [
   {
     id: 1,
-    type: 1,
-    name: {
-      first: 'Vanesa',
-      middle: null,
-      last: 'Raeva',
-    },
-    broker: 1,
+    typeId: 1,
+    firstName: 'Vanesa',
+    lastName: 'Raeva',
+    brokerId: 1,
     isOwner: false,
     isBuyer: true,
-    budget: {
-      value: null,
-      currency: 1,
-    },
+    budgetCurrencyId: 1,
+    budgetAmount: null,
     email: 'client_1@vivahome.bg',
-    phone: {
-      prefix: 359,
-      value: 877113307,
-    },
+    phonePrefix: 359,
+    phoneNumber: 877113307,
   },
 ];
 

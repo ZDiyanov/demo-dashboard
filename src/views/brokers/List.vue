@@ -75,7 +75,7 @@
       >
         <template #item-cell="{ cell }">
           <template v-if="cell.id === 'name'">
-            {{ `${cell.value.first} ${cell.value.last}` }}
+            {{ `${cell.item.firstName} ${cell.item.lastName}` }}
           </template>
 
           <template v-else-if="cell.id === 'position'">
@@ -85,7 +85,7 @@
           </template>
 
           <template v-else-if="cell.id === 'phone'">
-            {{ `${cell.value.prefix} ${cell.value.value}` }}
+            {{ `+${cell.item.phonePrefix} ${cell.item.phoneNumber}` }}
           </template>
 
           <template v-else-if="cell.id === 'actions'">
@@ -107,7 +107,7 @@
 
     <BaseDialog
       v-if="hasActiveBroker"
-      :title="`${activeBroker.name.first} ${activeBroker.name.last}`" icon="mdi-briefcase"
+      :title="`${activeBroker.firstName} ${activeBroker.lastName}`" icon="mdi-briefcase"
       :is-on="isDialogOn" :on-close="toggleDialog"
     >
       <template #content>

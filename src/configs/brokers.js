@@ -3,13 +3,13 @@ export const columnHeaders = [
     type: 'name',
     text: 'Name',
     sortable: false,
-    value: 'name',
+    value: 'name', // check this
   },
   {
     type: 'position',
     text: 'Position',
-    sortable: true,
-    value: 'position',
+    sortable: false,
+    value: 'position', // check this
   },
   {
     type: 'email',
@@ -21,7 +21,7 @@ export const columnHeaders = [
     type: 'phone',
     text: 'Phone',
     sortable: false,
-    value: 'phone',
+    value: 'phone', // check this
   },
   {
     type: 'actions',

@@ -76,14 +76,13 @@ const actions = {
   executeLogin: ({ commit, state }, data) => {
     const token = 'caiwnec13923d1o2d123d123cma0392';
     const user = mockedUsers.find((user) => user.email === data.email);
-    const { role } = user;
-    const { permissions } = mockedRoles.find((mockRole) => mockRole.id === role.id);
+    const { permissions, ...rest } = mockedRoles.find((mockRole) => mockRole.id === user.roleId);
 
     const nextAuth = {
       ...state,
       token,
-      role,
       user,
+      role: rest,
       permissions,
     };
 

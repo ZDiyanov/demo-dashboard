@@ -56,12 +56,12 @@
           @click.prevent="goToDetails(item)"
         >
           <v-img
-            :src="item.details.cover"
+            :src="item.cover"
             class="property-image"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           >
             <v-card-actions>
-              <div class="pl-2 text-h6 white--text">{{ propertyTypes[item.details.typeId].title }}</div>
+              <div class="pl-2 text-h6 white--text">{{ $t(propertyTypes[item.propertyTypeId].slug) }}</div>
               <v-spacer></v-spacer>
               <v-btn v-if="showStarredBtn" icon>
                 <v-icon class="white--text">mdi-pencil</v-icon>
@@ -69,12 +69,12 @@
             </v-card-actions>
           </v-img>
 
-          <v-card-title v-if="showPrice">{{ currencies[item.price.currency].symbol }}{{ item.price.amount }}</v-card-title>
+          <v-card-title v-if="showPrice">{{ currencies[item.priceCurrencyId].symbol }}{{ item.priceAmount }}</v-card-title>
           <v-card-subtitle v-if="showDetails">
             <ul class="details-list">
-              <li>{{ item.measurements.amount }}m<sup>2</sup></li>
-              <li>{{ item.details.rooms }} bedrooms</li>
-              <li>{{ item.details.baths }} baths</li>
+              <li>{{ item.measurementValue }}m<sup>2</sup></li>
+              <li>{{ item.roomCount }} bedrooms</li>
+              <li>{{ item.bathCount }} baths</li>
             </ul>
           </v-card-subtitle>
           <v-card-text v-if="showLocation">

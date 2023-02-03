@@ -72,11 +72,11 @@
       >
         <template #item-cell="{ cell }">
           <template v-if="cell.id === 'name'">
-            {{ `${cell.value.first} ${cell.value.last}` }}
+            {{ `${cell.item.firstName} ${cell.item.lastName}` }}
           </template>
 
           <template v-else-if="cell.id === 'phone'">
-            {{ `${cell.value.prefix} ${cell.value.value}` }}
+            {{ `+${cell.item.phonePrefix} ${cell.item.phoneNumber}` }}
           </template>
 
           <template v-else-if="cell.id === 'actions'">
@@ -98,7 +98,7 @@
 
     <BaseDialog
       v-if="hasActiveClient"
-      :title="`${activeClient.name.first} ${activeClient.name.last}`" icon="mdi-account"
+      :title="`${activeClient.firstName} ${activeClient.lastName}`" icon="mdi-account"
       :is-on="isDialogOn" :on-close="toggleDialog"
     >
       <template #content>

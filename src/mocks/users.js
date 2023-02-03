@@ -1,74 +1,49 @@
-import { superAdmin, admin, editor } from '@/mocks/roles';
-
-const { permissions: permissionsSA, ...metaSA } = superAdmin;
-const { permissions: permissionsA, ...metaA } = admin;
-const { permissions: permissionsE, ...metaE } = editor;
-
 export const superAdmins = [
   {
     id: 1,
-    name: {
-      first: 'Pitar',
-      middle: null,
-      last: 'Radoev',
-    },
-    role: metaSA,
-    position: 'Owner',
+    firstName: 'Pitar',
+    lastName: 'Radoev',
+    roleId: 1,
+    positionId: 1,
     email: 'pitar.radev@vivahome.bg',
-    phone: {
-      prefix: '+359',
-      value: 877113307,
-    },
-  }, {
+    phonePrefix: 359,
+    phoneNumber: 877113307,
+  },
+  {
     id: 2,
-    name: {
-      first: 'Nikolay',
-      middle: null,
-      last: 'Radev',
-    },
-    role: metaSA,
-    position: 'Owner',
+    firstName: 'Nikolay',
+    lastName: 'Radev',
+    role: 1,
+    positionId: 1,
     email: 'niki.radev@vivahome.bg',
-    phone: {
-      prefix: '+359',
-      value: 877113307,
-    },
+    phonePrefix: 359,
+    phoneNumber: 877113307,
   },
 ];
 
 export const admins = [
   {
     id: 3,
-    name: {
-      first: 'Georgi',
-      middle: null,
-      last: 'Dimitrov',
-    },
-    role: metaA,
-    position: 1,
+    firstName: 'Georgi',
+    lastName: 'Dimitrov',
+    roleId: 2,
+    positionId: 2,
     email: 'georgi.dimitrov@vivahome.bg',
-    phone: {
-      prefix: 359,
-      value: 877113307,
-    },
+    phonePrefix: 359,
+    phoneNumber: 877113307,
   },
 ];
 
 export const editors = [
   {
     id: 4,
-    name: {
-      first: 'Vanesa',
-      middle: null,
-      last: 'Raeva',
-    },
-    role: metaE,
-    position: 'Broker',
+    firstName: 'Vanesa',
+    lastName: 'Raeva',
+    roleId: 3,
+    positionId: 3,
     email: 'vanesa.raeva@vivahome.bg',
-    phone: {
-      prefix: '+359',
-      value: 877113307,
-    },
+    phonePrefix: 359,
+    phoneNumber: 877113307,
   },
 ];
 
