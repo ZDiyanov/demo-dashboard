@@ -1,6 +1,6 @@
 export default {
   auth: {
-    token: null,
+    token: {},
     user: {},
     role: {},
     permissions: [],

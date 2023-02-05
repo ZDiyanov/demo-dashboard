@@ -1,13 +1,11 @@
+import { authService } from '@/services';
 // eslint-disable-next-line import/no-cycle
 import router from '@/router';
 // eslint-disable-next-line import/no-cycle
 import store, { resetStores } from '@/store';
 import initialState from '@/store/initialState';
-import { isNum, isObj, isArr, isNull } from '@/utils';
+import { isNum, isObj, isArr } from '@/utils';
 import isAuthorized from '@/utils/permissions';
-
-import mockedRoles from '@/mocks/roles';
-import mockedUsers from '@/mocks/users';
 
 /**
 * @description Is valid
@@ -15,7 +13,7 @@ import mockedUsers from '@/mocks/users';
 * @returns {boolean}
 */
 const isValid = (auth) => isObj(auth)
-  && isNull(auth.token)
+  && isObj(auth.token)
   && isObj(auth.role)
   && isObj(auth.user)
   && isArr(auth.permissions)
@@ -74,23 +72,22 @@ export const getters = {
 
 const actions = {
   executeLogin: ({ commit, state }, data) => {
-    const token = 'caiwnec13923d1o2d123d123cma0392';
-    const user = mockedUsers.find((user) => user.email === data.email);
-    const { permissions, ...rest } = mockedRoles.find((mockRole) => mockRole.id === user.roleId);
+    authService.login(data).then((res) => {
+      const { token, role, user, permissions } = res.data.data;
+      const nextAuth = {
+        ...state,
+        token,
+        role,
+        user,
+        permissions,
+      };
 
-    const nextAuth = {
-      ...state,
-      token,
-      user,
-      role: rest,
-      permissions,
-    };
+      setAbility(permissions);
 
-    setAbility(permissions);
+      commit('SET', nextAuth);
 
-    commit('SET', nextAuth);
-
-    return router.replace({ name: 'dashboard' });
+      return router.replace({ name: 'dashboard' });
+    });
   },
   logout: ({ commit }) => {
     actions.resetAll({ commit });

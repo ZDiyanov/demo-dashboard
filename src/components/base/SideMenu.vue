@@ -75,16 +75,16 @@
 
         <v-list-item class="px-2">
           <v-list-item-avatar color="pink">
-            <span>{{ `${user.firstName.charAt(0)}${user.lastName.charAt(0)}` }}</span>
+            <span>{{ `${user.firstname.charAt(0)}${user.lastname.charAt(0)}` }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content class="pa-0">
-            <v-list-item-title>{{ user.firstName }} {{ user.lastName }}</v-list-item-title>
+            <v-list-item-title>{{ user.firstname }} {{ user.lastname }}</v-list-item-title>
             <v-list-item-subtitle>{{ user.positionId }}</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-btn
-            v-if="$ability.can('edit', 'app')"
+            v-if="$ability.can('list-all', 'permissions')"
             icon disabled
             @click.prevent="redirect('profile')"
           >
@@ -97,7 +97,12 @@
 
       <v-list nav dense>
         <template v-for="(group, index) in tabs.groups">
-          <v-list-item-group :key="index" v-if="group.items.length && $ability.can('view', group.subject)">
+          <v-list-item-group
+            :key="index"
+            v-if="
+              group.items.length
+              && ($ability.can('list-all', group.subject) || $ability.can('view', group.subject))"
+          >
             <v-subheader v-show="!isMinimized">{{ $t(group.slug).toUpperCase() }}</v-subheader>
             <template v-for="(item, index) in group.items">
               <v-list-item
@@ -124,7 +129,7 @@
             v-for="(item, index) in tabs.app"
           >
             <v-list-item
-              v-if="!item.action || $ability.can(item.action, 'app')"
+              v-if="!item.action || $ability.can(item.action, 'permissions')"
               :key="index"
               link :disabled="item.disabled"
               @click="onTabClick(item.route, item.method)"

@@ -7,8 +7,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'properties',
-        actions: ['list'],
+        subject: 'property',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/properties/Catalogue'),
@@ -21,7 +21,7 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'properties',
+        subject: 'property',
         actions: ['view'],
       }],
     },
@@ -35,8 +35,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'properties',
-        actions: ['list'],
+        subject: 'property',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/properties/Archive'),
@@ -49,7 +49,7 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'properties',
+        subject: 'property',
         actions: ['view'],
       }],
     },
@@ -64,8 +64,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'properties',
-        actions: ['create'],
+        subject: 'property',
+        actions: ['store'],
       }],
     },
     component: () => import('@/views/properties/Create'),

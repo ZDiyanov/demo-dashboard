@@ -7,8 +7,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'brokers',
-        actions: ['list'],
+        subject: 'user',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/brokers/List'),
@@ -21,8 +21,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'brokers',
-        actions: ['list'],
+        subject: 'user',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/brokers/Archive'),
@@ -35,7 +35,7 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'brokers',
+        subject: 'user',
         actions: ['view'],
       }],
     },
@@ -49,8 +49,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'brokers',
-        actions: ['create'],
+        subject: 'user',
+        actions: ['store'],
       }],
     },
     component: () => import('@/views/brokers/Create'),

@@ -25,10 +25,10 @@ export default [
       slug: 'view_app_profile',
       auth: true,
       isAuthView: false,
-      // permissions: [{
-      //   subject: 'app',
-      //   actions: ['view'],
-      // }],
+      permissions: [{
+        subject: 'permissions',
+        actions: ['list-all'],
+      }],
     },
     component: () => import('@/views/app/Profile'),
   },
@@ -40,8 +40,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'app',
-        actions: ['view'],
+        subject: 'permissions',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/app/Dashboard'),
@@ -54,8 +54,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'app',
-        actions: ['edit'],
+        subject: 'permissions',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/app/Settings'),

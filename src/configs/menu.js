@@ -2,12 +2,12 @@ export default {
   groups: [
     {
       id: 1,
-      subject: 'app',
+      subject: 'permissions',
       slug: 'menu_group_general',
       items: [
         {
           id: 1,
-          action: 'list',
+          action: 'list-all',
           slug: 'menu_item_dashboard',
           icon: 'view-dashboard',
           route: 'dashboard',
@@ -18,12 +18,12 @@ export default {
     },
     {
       id: 2,
-      subject: 'properties',
+      subject: 'property',
       slug: 'menu_group_properties',
       items: [
         {
           id: 2,
-          action: 'list',
+          action: 'list-all',
           slug: 'menu_item_properties_list',
           icon: 'home-city',
           route: 'propertiesCatalogue',
@@ -41,7 +41,7 @@ export default {
         },
         {
           id: 4,
-          action: 'create',
+          action: 'store',
           slug: 'menu_item_property_create',
           icon: 'home-plus',
           route: 'propertyCreate',
@@ -52,12 +52,12 @@ export default {
     },
     {
       id: 3,
-      subject: 'clients',
+      subject: 'client',
       slug: 'menu_group_clients',
       items: [
         {
           id: 5,
-          action: 'list',
+          action: 'list-all',
           slug: 'menu_item_clients_list',
           icon: 'account-group',
           route: 'clientsList',
@@ -75,7 +75,7 @@ export default {
         },
         {
           id: 7,
-          action: 'create',
+          action: 'store',
           slug: 'menu_item_client_create',
           icon: 'account-plus',
           route: 'clientCreate',
@@ -86,13 +86,13 @@ export default {
     },
     {
       id: 4,
-      subject: 'brokers',
+      subject: 'user',
       slug: 'menu_group_brokers',
       label: 'Brokers',
       items: [
         {
           id: 8,
-          action: 'list',
+          action: 'list-all',
           slug: 'menu_item_brokers_list',
           label: 'Broker List',
           icon: 'format-list-text',
@@ -102,7 +102,7 @@ export default {
         },
         {
           id: 9,
-          action: 'create',
+          action: 'store',
           slug: 'menu_item_broker_create',
           label: 'Create New Broker',
           icon: 'briefcase-plus',
@@ -116,7 +116,7 @@ export default {
   app: [
     {
       id: 10,
-      action: 'edit',
+      action: 'list-all',
       slug: 'menu_item_settings_index',
       icon: 'cog',
       route: 'settings',

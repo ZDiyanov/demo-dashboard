@@ -5,8 +5,8 @@
     name: 'Login',
     data() {
       return {
-        email: '',
-        password: '',
+        email: 'test+sa@example.com',
+        password: 'asdasdASD!',
       };
     },
     methods: {
@@ -23,9 +23,6 @@
       return {
         title: 'Welcome!'
       };
-    },
-    created() {
-      console.log(mockedAuth);
     },
   };
 </script>

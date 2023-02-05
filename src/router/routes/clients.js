@@ -7,8 +7,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'clients',
-        actions: ['list'],
+        subject: 'client',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/clients/List'),
@@ -21,7 +21,7 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'clients',
+        subject: 'client',
         actions: ['view'],
       }],
     },
@@ -35,8 +35,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'clients',
-        actions: ['list'],
+        subject: 'client',
+        actions: ['list-all'],
       }],
     },
     component: () => import('@/views/clients/Archive'),
@@ -49,7 +49,7 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'clients',
+        subject: 'client',
         actions: ['view'],
       }],
     },
@@ -63,8 +63,8 @@ export default [
       auth: true,
       isAuthView: false,
       permissions: [{
-        subject: 'clients',
-        actions: ['create'],
+        subject: 'client',
+        actions: ['store'],
       }],
     },
     component: () => import('@/views/clients/Create'),
