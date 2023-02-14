@@ -1,3 +1,4 @@
+import { brokerService } from '@/services';
 import { isObj, isArr } from '@/utils';
 import initialState from '@/store/initialState';
 
@@ -39,17 +40,28 @@ export const getters = {
   activeItem: ({ activeItem }) => activeItem,
   items: ({ items }) => items,
   itemsMeta: ({ itemsMeta }) => itemsMeta,
+  itemsData: ({ items, itemsMeta }) => ({ items, itemsMeta }),
 };
 
 const actions = {
-  getItems: ({ commit, state }) => {
-    const nextState = {
-      ...state,
-      items: mockedBrokers,
-    };
+  getItems: ({ commit, state }, query) => (
+    brokerService.getItems(query).then((res) => {
+      const { data, meta } = res.data;
+      const nextItems = {
+        items: data,
+        itemsMeta: meta,
+      };
 
-    commit('SET', nextState);
-  },
+      const nextState = {
+        ...state,
+        ...nextItems,
+      };
+
+      commit('SET', nextState);
+
+      return nextItems;
+    })
+  ),
   getItem: ({ commit, state }, id) => {
     const nextState = {
       ...state,
@@ -58,6 +70,9 @@ const actions = {
 
     commit('SET', nextState);
   },
+  createItem: (context, query) => (
+    brokerService.createItem(query).then((res) => res.data.data)
+  ),
   reset: ({ commit }) => (
     commit('SET', initialState.brokers)
   ),

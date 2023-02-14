@@ -41,6 +41,15 @@
   "view_broker_create": "Create New Broker",
   "view_broker_edit": "Edit Broker",
 
+  "broker_field_first_name": "First name",
+  "broker_field_last_name": "Last name",
+  "broker_field_email": "Email",
+  "broker_field_phone_number": "Phone number",
+  "broker_field_password": "Password",
+  "broker_field_role": "Account role",
+  "broker_field_status": "Account Status",
+  "broker_field_position": "Broker position",
+
   "property_field_type": "Property Type",
   "property_field_construction": "Construction",
   "property_field_year": "Year",
@@ -86,5 +95,17 @@
   "amendity_security": "Security",
   "amendity_entrance_control": "Entrance Control",
   "amendity_residential_complex": "Residential Complex",
-  "amendity_railroad_apartment": "Railroad Apartment"
+  "amendity_railroad_apartment": "Railroad Apartment",
+
+  "user_role_list_super_admin": "Super admin",
+  "user_role_list_admin": "Admin",
+  "user_role_list_editor": "Editor",
+
+  "employee_type_manager": "Manager",
+  "employee_type_employee": "Employee",
+  "employee_type_contractor": "Contractor",
+
+  "account_status_active": "Active",
+  "account_status_suspended": "Suspended",
+  "account_status_archived": "Archived"
 }

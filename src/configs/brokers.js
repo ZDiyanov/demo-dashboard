@@ -1,9 +1,32 @@
+import { required, email, minLength } from 'vuelidate/lib/validators';
+
+export const validationSet = {
+  firstName: { required },
+  lastName: { required },
+  email: { required, email },
+  phonePrefix: {
+    required,
+    minLength: minLength(2),
+  },
+  phoneNumber: {
+    required,
+    minLength: minLength(6),
+  },
+  roleId: { required },
+  positionId: { required },
+  statusId: { required },
+  password: {
+    required,
+    minLength: minLength(3),
+  },
+};
+
 export const columnHeaders = [
   {
     type: 'name',
     text: 'Name',
     sortable: false,
-    value: 'name', // check this
+    value: 'firstname', // check this
   },
   {
     type: 'position',
@@ -31,4 +54,4 @@ export const columnHeaders = [
   },
 ];
 
-export default { columnHeaders };
+export default { validationSet, columnHeaders };

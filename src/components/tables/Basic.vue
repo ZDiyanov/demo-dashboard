@@ -14,13 +14,21 @@
         requred: true,
         default: () => [],
       },
+      pages: {
+        type: Number,
+        required: true,
+      },
+      pagination: {
+        type: Object,
+        required: true,
+      },
       isLoading: {
         type: Boolean,
         default: false,
       },
       itemsPerPage: {
         type: Number,
-        default: 10,
+        default: 5,
       },
       noDataLabel: {
         type: String,
@@ -32,17 +40,25 @@
         type: String,
         default() {
           return 'Loading ...';
-        }
+        },
       },
       perPageLabel: {
         type: String,
         default() {
           return 'per page txt';
-        }
+        },
       },
       hasCustomItemsTemplate: {
         type: Boolean,
-        default: false
+        default: false,
+      },
+      onUpdatePagination: {
+        type: Function,
+        default: () => {},
+      },
+      onChangePage: {
+        type: Function,
+        default: () => {},
       },
     },
     data() {
@@ -61,16 +77,33 @@
 
         return extractNestedProp(item, columnValue);
       },
+      onUpdateOptions(options) {
+        const nextOptions = {
+          page: options.page,
+          sortBy: options.sortBy[0],
+          descending: options.sortDesc[0],
+          rowsPerPage: options.itemsPerPage,
+        };
+
+        this.onUpdatePagination(nextOptions);
+      },
+      onUpdateSort(options) {},
+      onUpdatePage(options) {},
     },
   };
 </script>
 
 <template>
   <v-data-table
+    class="elevation-1"
     :headers="columns" :items="items"
+    :server-items-length="pagination.totalItems"
+    :sort-by="pagination.sortBy" :sort-desc="pagination.descending"
     :footer-props="footerConfig" :items-per-page="itemsPerPage"
-    :loading-text="loadingLabel" :no-data-text="noDataLabel"
-    :loading="isLoading" class="elevation-1"
+    :loading-text="loadingLabel" :loading="isLoading"
+    :no-data-text="noDataLabel"
+    @update:options="onUpdateOptions" @update:sortBy="onUpdateSort"
+    @update:page="onUpdatePage"
   >
       <template v-for="column in columns" v-slot:[`header.${column.value}`]>
         {{ column.text }}

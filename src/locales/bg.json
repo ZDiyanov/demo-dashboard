@@ -41,6 +41,15 @@
   "view_broker_create": "Създаване на брокер",
   "view_broker_edit": "Редактиране на брокер",
 
+  "broker_field_first_name": "Име",
+  "broker_field_last_name": "Фамилия",
+  "broker_field_email": "Имейл",
+  "broker_field_phone_number": "Телефон",
+  "broker_field_password": "Парола",
+  "broker_field_role": "Акаунт роля",
+  "broker_field_status": "Акаунт статус",
+  "broker_field_position": "Тип на служителя",
+
   "property_field_type": "Тип на обекта",
   "property_field_construction": "Вид строителство",
   "property_field_year": "Година",
@@ -86,5 +95,17 @@
   "amendity_security": "Охрана",
   "amendity_entrance_control": "Контрол на достъпа",
   "amendity_residential_complex": "Жилищен комплекс",
-  "amendity_railroad_apartment": "Railroad апартамент"
+  "amendity_railroad_apartment": "Railroad апартамент",
+
+  "user_role_list_super_admin": "Супер администратор",
+  "user_role_list_admin": "Администратор",
+  "user_role_list_editor": "Едитор",
+
+  "employee_type_manager": "Мениджър",
+  "employee_type_employee": "Служител",
+  "employee_type_contractor": "Контрактор",
+
+  "account_status_active": "Активен",
+  "account_status_suspended": "Замръзен",
+  "account_status_archived": "Архивиран"
 }

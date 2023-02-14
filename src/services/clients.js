@@ -1,4 +1,4 @@
-// import { apiUrl } from '@/utils/services';
+// import { servicesUrl } from '@/utils/services';
 
 export const services = {};
 

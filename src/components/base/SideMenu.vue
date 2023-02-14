@@ -75,11 +75,11 @@
 
         <v-list-item class="px-2">
           <v-list-item-avatar color="pink">
-            <span>{{ `${user.firstname.charAt(0)}${user.lastname.charAt(0)}` }}</span>
+            <span>{{ `${user.firstName.charAt(0)}${user.lastName.charAt(0)}` }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content class="pa-0">
-            <v-list-item-title>{{ user.firstname }} {{ user.lastname }}</v-list-item-title>
+            <v-list-item-title>{{ user.firstName }} {{ user.lastName }}</v-list-item-title>
             <v-list-item-subtitle>{{ user.positionId }}</v-list-item-subtitle>
           </v-list-item-content>
 
