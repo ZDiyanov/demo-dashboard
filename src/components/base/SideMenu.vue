@@ -1,6 +1,7 @@
 <script>
   import { isUndef, isNull } from '@/utils';
   import tabs from '@/configs/menu';
+  import { employeeTypesMap } from '@/configs/employeeTypes';
 
   export default {
     data() {
@@ -8,6 +9,7 @@
         drawer: false,
         isMinimized: false,
         tabs,
+        employeeTypesMap,
       };
     },
     computed: {
@@ -80,7 +82,7 @@
 
           <v-list-item-content class="pa-0">
             <v-list-item-title>{{ user.firstName }} {{ user.lastName }}</v-list-item-title>
-            <v-list-item-subtitle>{{ user.positionId }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ employeeTypesMap.get(user.positionId).label }}</v-list-item-subtitle>
           </v-list-item-content>
 
           <v-btn

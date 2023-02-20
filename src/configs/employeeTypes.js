@@ -17,4 +17,6 @@ export const contractor = {
 };
 
 export const employeeTypesList = [manager, employee, contractor];
+export const employeeTypesMap = new Map(employeeTypesList.map(({ id, ...rest }) => [id, { ...rest }]));
+
 export default employeeTypesList;

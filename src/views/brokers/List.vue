@@ -2,6 +2,7 @@
   import { mapGetters, mapActions } from 'vuex';
   import { isObj, isNum, isStr } from '@/utils';
   import { columnHeaders as columns } from '@/configs/brokers';
+  import { employeeTypesMap } from '@/configs/employeeTypes';
   import BasicTable from '@/components/tables/Basic';
   import BaseDialog from '@/components/dialogs/BaseDialog';
   import BrokerDetailsPanel from '@/components/panels/BrokerDetails';
@@ -12,6 +13,7 @@
     data() {
       return {
         columns,
+        employeeTypesMap,
         pagination: {
           descending: false,
           page: 1,
@@ -50,8 +52,21 @@
       createBroker() {
         this.$router.push({ name: 'brokerCreate' });
       },
-      getColor() {
-        return 'green';
+      getColor(variation) {
+        let color;
+
+        switch (variation) {
+          case 1:
+            color = 'green';
+            break;
+          case 2:
+            color = 'blue';
+            break;
+          default:
+            color = 'grey';
+        }
+
+        return color;
       },
       toggleDialog() {
         this.isDialogOn = !this.isDialogOn;
@@ -148,8 +163,8 @@
           </template>
 
           <template v-else-if="cell.id === 'position'">
-            <v-chip :color="getColor()" dark>
-              {{ cell.item.positionId }}
+            <v-chip :color="getColor(cell.item.positionId)" dark>
+              {{ employeeTypesMap.get(cell.item.positionId).label }}
             </v-chip>
           </template>
 
