@@ -1,3 +1,9 @@
+<script>
+  export default {
+    name: 'AuthFrame',
+  };
+</script>
+
 <template>
   <div
     data-component-group="layouts"

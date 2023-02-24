@@ -1,5 +1,32 @@
+<script>
+  export default {
+    name: 'Login',
+    data() {
+      return {
+        email: 'zhkv.se@gmail.com',
+        password: 'asdasdASD!',
+      };
+    },
+    methods: {
+      login() {
+        const data = {
+          email: this.email,
+          password: this.password
+        };
+
+        return this.$store.dispatch('auth/executeLogin', data);
+      },
+    },
+    metaInfo() {
+      return {
+        title: 'Welcome!'
+      };
+    },
+  };
+</script>
+
 <template>
-  <auth-frame>
+  <AuthFrame>
     <div class="login-wrap d-flex justify-center align-center">
       <v-card class="px-10 py-6">
         <div class="login-wrap__form">
@@ -25,39 +52,8 @@
         </div>
       </v-card>
     </div>
-  </auth-frame>
+  </AuthFrame>
 </template>
-
-<script>
-  import mockedAuth from '@/mocks/auth';
-
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-      };
-    },
-    methods: {
-      login() {
-        const data = {
-          email: this.email,
-          password: this.password
-        };
-
-        return this.$store.dispatch('auth/executeLogin', data);
-      },
-    },
-    metaInfo() {
-      return {
-        title: 'Welcome!'
-      };
-    },
-    created() {
-      console.log(mockedAuth);
-    },
-  };
-</script>
 
 <style lang="scss" scoped>
   .login-wrap {
