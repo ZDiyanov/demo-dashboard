@@ -1,3 +1,32 @@
+import { required, email, minLength } from 'vuelidate/lib/validators';
+
+export const validationSet = {
+  type: { required },
+  firstName: { required },
+  lastName: { required },
+  email: { required, email },
+  phonePrefix: {
+    required,
+    minLength: minLength(2),
+  },
+  phoneNumber: {
+    required,
+    minLength: minLength(6),
+  },
+  budgetValue: {
+    required: false,
+  },
+  budgetCurrencyId: {
+    required: false,
+  },
+  isOwner: {
+    required: false,
+  },
+  isBroker: {
+    required: false,
+  },
+};
+
 export const columnHeaders = [
   {
     type: 'name',
@@ -31,4 +60,24 @@ export const columnHeaders = [
   },
 ];
 
-export default { columnHeaders };
+export const types = [
+  {
+    id: 1,
+    label: 'Person',
+    slug: 'client_type_person',
+  },
+  {
+    id: 2,
+    label: 'Company',
+    slug: 'client_type_company',
+  },
+];
+
+export const typesMap = new Map(types.map(({ id, ...rest }) => [id, { ...rest }]));
+
+export default {
+  validationSet,
+  columnHeaders,
+  types,
+  typesMap,
+};

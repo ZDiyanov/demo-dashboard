@@ -16,6 +16,13 @@
   "menu_item_settings_index": "Settings",
   "menu_item_action_logout": "Logout",
 
+  "currency_euro": "Euro",
+  "currency_euro_short": "EU",
+  "currency_dollar": "Dollar",
+  "currency_dollar_short": "USD",
+  "currency_lev": "Lev",
+  "currency_lev_short": "LV",
+
   "view_auth_login": "Login",
   "view_app_not_found": "Not Found",
   "view_app_home": "Home",
@@ -49,6 +56,16 @@
   "broker_field_role": "Account role",
   "broker_field_status": "Account Status",
   "broker_field_position": "Broker position",
+
+  "client_field_type": "Type",
+  "client_field_first_name": "First name",
+  "client_field_last_name": "Last name",
+  "client_field_email": "Email",
+  "client_field_phone_number": "Phone number",
+  "client_field_budget_value": "Budget",
+  "client_field_budget_currency": "Currency",
+  "client_field_is_owner": "Client is an owner",
+  "client_field_is_broker": "Client is a broker",
 
   "property_field_type": "Property Type",
   "property_field_construction": "Construction",
@@ -107,5 +124,8 @@
 
   "account_status_active": "Active",
   "account_status_suspended": "Suspended",
-  "account_status_archived": "Archived"
+  "account_status_archived": "Archived",
+
+  "client_type_person": "Person",
+  "client_type_company": "Company"
 }

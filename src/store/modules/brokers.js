@@ -2,8 +2,6 @@ import { brokerService } from '@/services';
 import { isObj, isArr } from '@/utils';
 import initialState from '@/store/initialState';
 
-import mockedBrokers from '@/mocks/users';
-
 /**
 * @description Is valid
 * @param brokers
@@ -62,17 +60,39 @@ const actions = {
       return nextItems;
     })
   ),
-  getItem: ({ commit, state }, id) => {
+  getItem: ({ dispatch }, id) => (
+    brokerService.getItem(id).then((res) => {
+      const { data: nextItem } = res.data;
+
+      dispatch('setActiveItem', nextItem);
+
+      return nextItem;
+    })
+  ),
+  createItem: (context, query) => (
+    brokerService.createItem(query).then((res) => res.data.data)
+  ),
+  updateItem: (context, query) => (
+    brokerService.updateItem(query).then((res) => res.data.data)
+  ),
+  setActiveItem: ({ commit, state }, nextActiveItem) => {
     const nextState = {
       ...state,
-      activeItem: mockedBrokers.filter((item) => item.id === id)[0],
+      activeItem: nextActiveItem,
+    };
+
+    commit('SET', nextState);
+
+    return nextActiveItem;
+  },
+  resetActiveItem: ({ commit, state }) => {
+    const nextState = {
+      ...state,
+      activeItem: initialState.clients.activeItem,
     };
 
     commit('SET', nextState);
   },
-  createItem: (context, query) => (
-    brokerService.createItem(query).then((res) => res.data.data)
-  ),
   reset: ({ commit }) => (
     commit('SET', initialState.brokers)
   ),

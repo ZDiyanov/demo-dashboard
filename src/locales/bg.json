@@ -16,6 +16,13 @@
   "menu_item_settings_index": "Настройки",
   "menu_item_action_logout": "Изход",
 
+  "currency_euro": "Евро",
+  "currency_euro_short": "EU",
+  "currency_dollar": "Долар",
+  "currency_dollar_short": "USD",
+  "currency_lev": "Лев",
+  "currency_lev_short": "LV",
+
   "view_auth_login": "Вход",
   "view_app_not_found": "Няма намерени резултато",
   "view_app_home": "Начало",
@@ -49,6 +56,16 @@
   "broker_field_role": "Акаунт роля",
   "broker_field_status": "Акаунт статус",
   "broker_field_position": "Тип на служителя",
+
+  "client_field_type": "Тип",
+  "client_field_first_name": "Име",
+  "client_field_last_name": "Фамилия",
+  "client_field_email": "Имейл",
+  "client_field_phone_number": "Телефон",
+  "client_field_budget_value": "Бюджет",
+  "client_field_budget_currency": "Валута",
+  "client_field_is_owner": "Клиента е собственик",
+  "client_field_is_broker": "Клиента е брокер",
 
   "property_field_type": "Тип на обекта",
   "property_field_construction": "Вид строителство",
@@ -107,5 +124,8 @@
 
   "account_status_active": "Активен",
   "account_status_suspended": "Замръзен",
-  "account_status_archived": "Архивиран"
+  "account_status_archived": "Архивиран",
+
+  "client_type_person": "Физическо лице",
+  "client_type_company": "Юридическо лице"
 }

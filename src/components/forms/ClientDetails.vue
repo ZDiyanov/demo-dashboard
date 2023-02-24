@@ -1,13 +1,9 @@
 <script>
-  import { isNum } from '@/utils';
-  import {
-    roles as userRolesList,
-    statuses as accountStatusList,
-    types as employeeTypesList,
-  } from '@/configs/brokers';
+  import { types as clientTypesList } from '@/configs/clients';
+  import { currencies as currencyList } from '@/configs/currencies';
 
   export default {
-    name: 'BrokerDetailsForm',
+    name: 'ClientDetailsForm',
     props: {
       value: {
         type: Object,
@@ -20,13 +16,21 @@
     },
     data() {
       return {
-        userRolesList,
-        accountStatusList,
-        employeeTypesList,
-        canSeePassword: false,
+        clientTypesList,
+        currencyList,
       };
     },
     computed: {
+      typeErrors() {
+        const errors = [];
+        if (!this.v.type.$dirty) {
+          return errors;
+        }
+        if (!this.v.type.required) {
+          errors.push('Type is required.');
+        }
+        return errors;
+      },
       firstNameErrors() {
         const errors = [];
         if (!this.v.firstName.$dirty) {
@@ -86,54 +90,28 @@
         }
         return errors;
       },
-      passwordErrors() {
+      budgetValueErrors() {
         const errors = [];
-        if (!this.v.password.$dirty) {
+        if (!this.v.budgetValue.$dirty) {
           return errors;
         }
-        if (!this.v.password.required) {
-          errors.push('Password is required.');
+        if (!this.v.budgetValue.required) {
+          errors.push('Budget value is required.');
         }
         return errors;
       },
-      roleIdErrors() {
+      budgetCurrencyIdErrors() {
         const errors = [];
-        if (!this.v.roleId.$dirty) {
+        if (!this.v.budgetCurrencyId.$dirty) {
           return errors;
         }
-        if (!this.v.roleId.required) {
-          errors.push('Account role is required.');
+        if (!this.v.budgetCurrencyId.required) {
+          errors.push('Budget currency is required.');
         }
         return errors;
-      },
-      statusIdErrors() {
-        const errors = [];
-        if (!this.v.statusId.$dirty) {
-          return errors;
-        }
-        if (!this.v.statusId.required) {
-          errors.push('Account status is required.');
-        }
-        return errors;
-      },
-      positionIdErrors() {
-        const errors = [];
-        if (!this.v.positionId.$dirty) {
-          return errors;
-        }
-        if (!this.v.positionId.required) {
-          errors.push('Employee position is required.');
-        }
-        return errors;
-      },
-      isExistingBroker() {
-        return isNum(this.value.id);
       },
     },
     methods: {
-      togglePasswordFieldType() {
-        this.canSeePassword = !this.canSeePassword;
-      },
       update(key, value) {
         this.$emit('input', { ...this.value, [key]: value });
       },
@@ -143,6 +121,22 @@
 
 <template>
   <div>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="3">
+          <v-select
+            :value="value.type" @change="update('type', $event)"
+            :items="clientTypesList" item-value="id"
+            :label="$t('client_field_type')" clearable
+            type="text" :error-messages="typeErrors"
+          >
+            <template #selection="data">{{ $t(data.item.slug) }}</template>
+            <template #item="data">{{ $t(data.item.slug) }}</template>
+          </v-select>
+        </v-col>
+      </v-row>
+    </v-container>
+
     <div>
       <h4>Personal</h4>
     </div>
@@ -152,7 +146,7 @@
         <v-col cols="3">
           <v-text-field
             :value="value.firstName" @input="update('firstName', $event)"
-            :label="$t('broker_field_first_name')" clearable
+            :label="$t('client_field_first_name')" clearable
             type="text" :error-messages="firstNameErrors"
           />
         </v-col>
@@ -160,7 +154,7 @@
         <v-col cols="3">
           <v-text-field
             :value="value.lastName" @input="update('lastName', $event)"
-            :label="$t('broker_field_last_name')" clearable
+            :label="$t('client_field_last_name')" clearable
             type="text" :error-messages="lastNameErrors"
           />
         </v-col>
@@ -176,7 +170,7 @@
         <v-col cols="3">
           <v-text-field
             :value="value.email" @input="update('email', $event)"
-            :label="$t('broker_field_email')" clearable
+            :label="$t('client_field_email')" clearable
             type="text" :error-messages="emailErrors"
           />
         </v-col>
@@ -192,7 +186,7 @@
         <v-col cols="2">
           <v-text-field
             :value="value.phoneNumber" @input="update('phoneNumber', $event)"
-            :label="$t('broker_field_phone_number')" clearable
+            :label="$t('client_field_phone_number')" clearable
             type="number" :error-messages="phoneNumberErrors"
           />
         </v-col>
@@ -200,57 +194,43 @@
     </v-container>
 
     <div>
-      <h4>Account</h4>
+      <h4>Budget</h4>
     </div>
 
     <v-container fluid>
       <v-row>
         <v-col cols="3">
           <v-text-field
-            :value="value.password" @input="update('password', $event)"
-            :label="$t('broker_field_password')" clearable
-            :append-icon="canSeePassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-            :type="canSeePassword ? 'text' : 'password'" :error-messages="passwordErrors"
-            @click:append="togglePasswordFieldType"
+            :value="value.budgetValue" @input="update('budgetValue', $event)"
+            :label="$t('client_field_budget_value')" clearable
+            type="text" :error-messages="budgetValueErrors"
           />
         </v-col>
-      </v-row>
 
-      <v-row>
         <v-col cols="3">
           <v-select
-            :value="value.roleId" @change="update('roleId', $event)"
-            :items="userRolesList" item-value="id"
-            :label="$t('broker_field_role')" clearable
-            :error-messages="roleIdErrors"
+            :value="value.budgetCurrencyId" @change="update('budgetCurrencyId', $event)"
+            :items="currencyList" item-value="id"
+            :label="$t('client_field_budget_currency')" clearable
+            type="text" :error-messages="budgetCurrencyIdErrors"
           >
             <template #selection="data">{{ $t(data.item.slug) }}</template>
             <template #item="data">{{ $t(data.item.slug) }}</template>
           </v-select>
         </v-col>
 
-        <v-col cols="3">
-          <v-select
-            :value="value.statusId" @change="update('statusId', $event)"
-            :items="accountStatusList" item-value="id"
-            :label="$t('broker_field_status')" clearable
-            :disabled="!isExistingBroker" :error-messages="statusIdErrors"
-          >
-            <template #selection="data">{{ $t(data.item.slug) }}</template>
-            <template #item="data">{{ $t(data.item.slug) }}</template>
-          </v-select>
+        <v-col cols="2">
+          <v-checkbox
+            :value="value.isOwner" @change="update('isOwner', $event)"
+            :label="$t('client_field_is_owner')" dense
+          />
         </v-col>
 
-        <v-col cols="3">
-          <v-select
-            :value="value.positionId" @change="update('positionId', $event)"
-            :items="employeeTypesList" item-value="id"
-            :label="$t('broker_field_position')" clearable
-            :error-messages="positionIdErrors"
-          >
-            <template #selection="data">{{ $t(data.item.slug) }}</template>
-            <template #item="data">{{ $t(data.item.slug) }}</template>
-          </v-select>
+        <v-col cols="2">
+          <v-checkbox
+            :value="value.isBroker" @change="update('isBroker', $event)"
+            :label="$t('client_field_is_broker')" dense
+          />
         </v-col>
       </v-row>
     </v-container>

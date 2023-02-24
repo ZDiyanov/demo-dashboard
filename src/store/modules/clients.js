@@ -1,7 +1,6 @@
+import { clientService } from '@/services';
 import { isObj, isArr } from '@/utils';
 import initialState from '@/store/initialState';
-
-import mockedClients from '@/mocks/clients';
 
 /**
 * @description Is valid
@@ -39,24 +38,52 @@ export const getters = {
   activeItem: ({ activeItem }) => activeItem,
   items: ({ items }) => items,
   itemsMeta: ({ itemsMeta }) => itemsMeta,
+  itemsData: ({ items, itemsMeta }) => ({ items, itemsMeta }),
 };
 
 const actions = {
-  getItems: ({ commit, state }) => {
+  getItems: ({ commit, state }, query) => (
+    clientService.getItems(query).then((res) => {
+      const { data, meta } = res.data;
+      const nextItems = {
+        items: data,
+        itemsMeta: meta,
+      };
+
+      const nextState = {
+        ...state,
+        ...nextItems,
+      };
+
+      commit('SET', nextState);
+
+      return nextItems;
+    })
+  ),
+  getItem: ({ dispatch }, id) => (
+    clientService.getItem(id).then((res) => {
+      const { data: nextItem } = res.data;
+
+      dispatch('setActiveItem', nextItem);
+
+      return nextItem;
+    })
+  ),
+  createItem: (context, query) => (
+    clientService.createItem(query).then((res) => res.data.data)
+  ),
+  updateItem: (context, query) => (
+    clientService.updateItem(query).then((res) => res.data.data)
+  ),
+  setActiveItem: ({ commit, state }, nextActiveItem) => {
     const nextState = {
       ...state,
-      items: mockedClients,
+      activeItem: nextActiveItem,
     };
 
     commit('SET', nextState);
-  },
-  getItem: ({ commit, state }, id) => {
-    const nextState = {
-      ...state,
-      activeItem: mockedClients.filter((item) => item.id === id)[0],
-    };
 
-    commit('SET', nextState);
+    return nextActiveItem;
   },
   resetActiveItem: ({ commit, state }) => {
     const nextState = {

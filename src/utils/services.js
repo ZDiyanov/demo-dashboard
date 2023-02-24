@@ -18,7 +18,13 @@ export const maxItemsPerPage = process.env.VUE_APP_API_MAX_ITEMS_PER_PAGE;
  * @returns {object}
  */
 export const formatBrokerItem = item => {
-  const { firstName, lastName, email, phonePrefix, phoneNumber, password, roleId, statusId, positionId } = item;
+  const {
+    firstName, lastName,
+    email,
+    phonePrefix, phoneNumber,
+    password, roleId,
+    statusId, positionId,
+  } = item;
 
   return {
     firstname: firstName,
@@ -31,4 +37,43 @@ export const formatBrokerItem = item => {
     status: statusId,
     position_id: positionId,
   };
+};
+
+/**
+ * @description Generate properly formated client object
+ * @param item
+ * @returns {object}
+ */
+export const formatClientItem = item => {
+  const {
+    type,
+    firstName, lastName,
+    email,
+    isOwner, isBroker,
+    budgetValue, budgetCurrencyId,
+    phonePrefix, phoneNumber,
+    companyName, companyAddress,
+    uicNumber,
+  } = item;
+
+  const nextClient = {
+    type,
+    firstname: firstName,
+    lastname: lastName,
+    email,
+    is_owner: isOwner ? 1 : 0,
+    is_broker: isBroker ? 1 : 0,
+    budget: budgetValue,
+    budget_currency_id: budgetCurrencyId,
+    phone_prefix: phonePrefix,
+    phone: phoneNumber,
+  };
+
+  if (type === 2) {
+    nextClient.company_name = companyName;
+    nextClient.company_address = companyAddress;
+    nextClient.uic = uicNumber;
+  }
+
+  return nextClient;
 };

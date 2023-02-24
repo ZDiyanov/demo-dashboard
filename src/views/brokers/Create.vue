@@ -31,7 +31,13 @@
     methods: {
       ...mapActions({ createBroker: 'brokers/createItem' }),
       canSubmitBroker() {
-        const { firstName, lastName, email, phonePrefix, phoneNumber, password, roleId, statusId, positionId } = this.broker;
+        const {
+          firstName, lastName,
+          email,
+          phonePrefix, phoneNumber,
+          password, roleId,
+          statusId, positionId,
+        } = this.broker;
 
         return isStr(firstName)
           && isStr(lastName)
@@ -60,7 +66,7 @@
           .catch((err) => {
             console.log(err);
           });
-      }
+      },
     },
   };
 </script>

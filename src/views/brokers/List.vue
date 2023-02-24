@@ -1,8 +1,10 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import { isObj, isNum, isStr } from '@/utils';
-  import { columnHeaders as columns } from '@/configs/brokers';
-  import { employeeTypesMap } from '@/configs/employeeTypes';
+  import {
+    columnHeaders as columns,
+    typesMap as employeeTypesMap,
+  } from '@/configs/brokers';
   import BasicTable from '@/components/tables/Basic';
   import BaseDialog from '@/components/dialogs/BaseDialog';
   import BrokerDetailsPanel from '@/components/panels/BrokerDetails';
@@ -46,12 +48,9 @@
       ...mapActions(
         {
           getItems: 'brokers/getItems',
-          getItem: 'brokers/getItem',
+          setActiveItem: 'brokers/setActiveItem',
         },
       ),
-      createBroker() {
-        this.$router.push({ name: 'brokerCreate' });
-      },
       getColor(variation) {
         let color;
 
@@ -68,12 +67,27 @@
 
         return color;
       },
+      createBroker() {
+        this.$router.push({ name: 'brokerCreate' });
+      },
       toggleDialog() {
         this.isDialogOn = !this.isDialogOn;
       },
-      displayBrokerDetails({ id }) {
-        this.getBroker(id);
+      displayBrokerDetails(item) {
+        this.setActiveItem(item);
+
         this.isDialogOn = true;
+      },
+      editBrokerDetails(item) {
+        return this.setActiveItem(item)
+          .then(() => {
+            this.$router.push({
+              name: 'broker',
+              params: { id: item.id },
+            });
+
+            return item;
+          });
       },
       onUpdatePagination({ page, descending, sortBy, rowsPerPage }) {
         const { query, pagination } = this;
@@ -173,7 +187,7 @@
           </template>
 
           <template v-else-if="cell.id === 'actions'">
-            <v-btn icon>
+            <v-btn icon @click.prevent="editBrokerDetails(cell.item)">
               <v-icon>mdi-pencil-outline</v-icon>
             </v-btn>
 

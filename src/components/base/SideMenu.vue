@@ -1,7 +1,7 @@
 <script>
   import { isUndef, isNull } from '@/utils';
   import tabs from '@/configs/menu';
-  import { employeeTypesMap } from '@/configs/employeeTypes';
+  import { typesMap as employeeTypesMap } from '@/configs/brokers';
 
   export default {
     data() {

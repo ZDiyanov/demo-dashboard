@@ -29,6 +29,12 @@ export const services = {
       params,
     });
   },
+  getItem(id) {
+    return axios({
+      method: 'get',
+      url: `${servicesUrl}/users/${id}`,
+    });
+  },
   createItem(nextItem) {
     return axios({
       method: 'post',
@@ -36,7 +42,13 @@ export const services = {
       data: { ...formatBrokerItem(nextItem) },
     });
   },
-  updateItem() {},
+  updateItem({ id, ...rest }) {
+    return axios({
+      method: 'put',
+      url: `${servicesUrl}/users/${id}`,
+      data: { ...formatBrokerItem(rest) },
+    });
+  },
 };
 
 export default services;

@@ -1,11 +1,9 @@
 <script>
-  import mockedAuth from '@/mocks/auth';
-
   export default {
     name: 'Login',
     data() {
       return {
-        email: 'test+sa@example.com',
+        email: 'zhkv.se@gmail.com',
         password: 'asdasdASD!',
       };
     },

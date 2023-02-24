@@ -54,4 +54,69 @@ export const columnHeaders = [
   },
 ];
 
-export default { validationSet, columnHeaders };
+export const roles = [
+  {
+    id: 1,
+    label: 'Super Admin',
+    slug: 'user_role_list_super_admin',
+  },
+  {
+    id: 2,
+    label: 'Admin',
+    slug: 'user_role_list_admin',
+  },
+  {
+    id: 3,
+    label: 'Editor',
+    slug: 'user_role_list_editor',
+  },
+];
+
+export const statuses = [
+  {
+    id: 1,
+    label: 'Active',
+    slug: 'account_status_active',
+  },
+  {
+    id: 2,
+    label: 'Suspended',
+    slug: 'account_status_suspended',
+  },
+  {
+    id: 3,
+    label: 'Archived',
+    slug: 'account_status_archived',
+  },
+];
+
+export const types = [
+  {
+    id: 1,
+    label: 'Manager',
+    slug: 'employee_type_manager',
+  },
+  {
+    id: 2,
+    label: 'Employee',
+    slug: 'employee_type_employee',
+  },
+  {
+    id: 3,
+    label: 'Contractor',
+    slug: 'employee_type_contractor',
+  },
+];
+
+export const statusesMap = new Map(statuses.map(({ id, ...rest }) => [id, { ...rest }]));
+export const typesMap = new Map(types.map(({ id, ...rest }) => [id, { ...rest }]));
+
+export default {
+  validationSet,
+  columnHeaders,
+  roles,
+  statuses,
+  statusesMap,
+  types,
+  typesMap,
+};
