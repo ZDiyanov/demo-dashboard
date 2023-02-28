@@ -46,30 +46,33 @@ export const formatBrokerItem = item => {
  */
 export const formatClientItem = item => {
   const {
-    type,
+    typeId,
     firstName, lastName,
     email,
     isOwner, isBroker,
-    budgetValue, budgetCurrencyId,
+    budgetAmount, budgetCurrencyId,
     phonePrefix, phoneNumber,
     companyName, companyAddress,
     uicNumber,
   } = item;
 
   const nextClient = {
-    type,
-    firstname: firstName,
-    lastname: lastName,
+    type: typeId,
     email,
     is_owner: isOwner ? 1 : 0,
     is_broker: isBroker ? 1 : 0,
-    budget: budgetValue,
+    budget: budgetAmount,
     budget_currency_id: budgetCurrencyId,
     phone_prefix: phonePrefix,
     phone: phoneNumber,
   };
 
-  if (type === 2) {
+  if (typeId === 1) {
+    nextClient.firstname = firstName;
+    nextClient.lastname = lastName;
+  }
+
+  if (typeId === 2) {
     nextClient.company_name = companyName;
     nextClient.company_address = companyAddress;
     nextClient.uic = uicNumber;

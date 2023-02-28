@@ -1,4 +1,5 @@
 <script>
+  import { isNum } from '@/utils';
   import { types as clientTypesList } from '@/configs/clients';
   import { currencies as currencyList } from '@/configs/currencies';
 
@@ -21,12 +22,12 @@
       };
     },
     computed: {
-      typeErrors() {
+      typeIdErrors() {
         const errors = [];
-        if (!this.v.type.$dirty) {
+        if (!this.v.typeId.$dirty) {
           return errors;
         }
-        if (!this.v.type.required) {
+        if (!this.v.typeId.required) {
           errors.push('Type is required.');
         }
         return errors;
@@ -48,6 +49,30 @@
         }
         if (!this.v.lastName.required) {
           errors.push('Last name is required.');
+        }
+        return errors;
+      },
+      companyNameErrors() {
+        const errors = [];
+        if (!this.v.companyName.$dirty) {
+          return errors;
+        }
+        if (!this.v.companyName.required) {
+          errors.push('Company name is required.');
+        }
+        return errors;
+      },
+      uicNumberErrors() {
+        const errors = [];
+        if (!this.v.uicNumber.$dirty) {
+          return errors;
+        }
+        return errors;
+      },
+      companyAddressErrors() {
+        const errors = [];
+        if (!this.v.companyName.$dirty) {
+          return errors;
         }
         return errors;
       },
@@ -90,12 +115,12 @@
         }
         return errors;
       },
-      budgetValueErrors() {
+      budgetAmountErrors() {
         const errors = [];
-        if (!this.v.budgetValue.$dirty) {
+        if (!this.v.budgetAmount.$dirty) {
           return errors;
         }
-        if (!this.v.budgetValue.required) {
+        if (!this.v.budgetAmount.required) {
           errors.push('Budget value is required.');
         }
         return errors;
@@ -109,6 +134,14 @@
           errors.push('Budget currency is required.');
         }
         return errors;
+      },
+      isOfTypePerson() {
+        const { typeId } = this.value;
+        return isNum(typeId) && typeId === 1;
+      },
+      isOfTypeCompany() {
+        const { typeId } = this.value;
+        return isNum(typeId) && typeId === 2;
       },
     },
     methods: {
@@ -125,10 +158,10 @@
       <v-row>
         <v-col cols="3">
           <v-select
-            :value="value.type" @change="update('type', $event)"
+            :value="value.typeId" @change="update('typeId', $event)"
             :items="clientTypesList" item-value="id"
             :label="$t('client_field_type')" clearable
-            type="text" :error-messages="typeErrors"
+            type="text" :error-messages="typeIdErrors"
           >
             <template #selection="data">{{ $t(data.item.slug) }}</template>
             <template #item="data">{{ $t(data.item.slug) }}</template>
@@ -137,29 +170,67 @@
       </v-row>
     </v-container>
 
-    <div>
-      <h4>Personal</h4>
-    </div>
+    <template v-if="isOfTypePerson">
+      <div>
+        <h4>Personal</h4>
+      </div>
 
-    <v-container fluid>
-      <v-row>
-        <v-col cols="3">
-          <v-text-field
-            :value="value.firstName" @input="update('firstName', $event)"
-            :label="$t('client_field_first_name')" clearable
-            type="text" :error-messages="firstNameErrors"
-          />
-        </v-col>
+      <v-container fluid>
+        <v-row>
+          <v-col cols="3">
+            <v-text-field
+              :value="value.firstName" @input="update('firstName', $event)"
+              :label="$t('client_field_first_name')" clearable
+              type="text" :error-messages="firstNameErrors"
+            />
+          </v-col>
 
-        <v-col cols="3">
-          <v-text-field
-            :value="value.lastName" @input="update('lastName', $event)"
-            :label="$t('client_field_last_name')" clearable
-            type="text" :error-messages="lastNameErrors"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
+          <v-col cols="3">
+            <v-text-field
+              :value="value.lastName" @input="update('lastName', $event)"
+              :label="$t('client_field_last_name')" clearable
+              type="text" :error-messages="lastNameErrors"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+    </template>
+
+    <template v-if="isOfTypeCompany">
+      <div>
+        <h4>Company details</h4>
+      </div>
+
+      <v-container fluid>
+        <v-row>
+          <v-col cols="3">
+            <v-text-field
+              :value="value.companyName" @input="update('companyName', $event)"
+              :label="$t('client_field_company_name')" clearable
+              type="text" :error-messages="companyNameErrors"
+            />
+          </v-col>
+
+          <v-col cols="3">
+            <v-text-field
+              :value="value.uicNumber" @input="update('uicNumber', $event)"
+              :label="$t('client_field_uic_number')" clearable
+              type="text" :error-messages="uicNumberErrors"
+            />
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              :value="value.companyAddress" @input="update('companyAddress', $event)"
+              :label="$t('client_field_company_address')" clearable
+              type="text" :error-messages="companyAddressErrors"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+    </template>
 
     <div>
       <h4>Contact</h4>
@@ -201,9 +272,9 @@
       <v-row>
         <v-col cols="3">
           <v-text-field
-            :value="value.budgetValue" @input="update('budgetValue', $event)"
+            :value="value.budgetAmount" @input="update('budgetAmount', $event)"
             :label="$t('client_field_budget_value')" clearable
-            type="text" :error-messages="budgetValueErrors"
+            type="text" :error-messages="budgetAmountErrors"
           />
         </v-col>
 
@@ -218,15 +289,17 @@
             <template #item="data">{{ $t(data.item.slug) }}</template>
           </v-select>
         </v-col>
+      </v-row>
 
-        <v-col cols="2">
+      <v-row>
+        <v-col cols="3">
           <v-checkbox
             :value="value.isOwner" @change="update('isOwner', $event)"
             :label="$t('client_field_is_owner')" dense
           />
         </v-col>
 
-        <v-col cols="2">
+        <v-col cols="3">
           <v-checkbox
             :value="value.isBroker" @change="update('isBroker', $event)"
             :label="$t('client_field_is_broker')" dense
