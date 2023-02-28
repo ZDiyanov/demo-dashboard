@@ -30,9 +30,7 @@
       };
     },
     validations() {
-      return {
-        client: clientValidationSet(this.client),
-      };
+      return { client: clientValidationSet(this.client) };
     },
     methods: {
       ...mapActions({ createClient: 'clients/createItem' }),

@@ -16,7 +16,7 @@
       };
     },
     validations() {
-      return { client: clientValidationSet };
+      return { client: clientValidationSet(this.client) };
     },
     computed: {
       ...mapGetters({ activeItem: 'clients/activeItem' }),
