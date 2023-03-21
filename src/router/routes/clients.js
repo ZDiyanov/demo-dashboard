@@ -56,7 +56,7 @@ export default [
     component: () => import('@/views/clients/Single'),
   },
   {
-    path: '/client/create',
+    path: '/clients/create',
     name: 'clientCreate',
     meta: {
       slug: 'view_client_create',

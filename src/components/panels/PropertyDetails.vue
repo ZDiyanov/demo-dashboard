@@ -1,268 +1,119 @@
 <script>
-  import uid from 'uid';
-  import propertyTypes from '@/configs/propertyTypes';
-  import currencies from '@/configs/currencies';
-  import constructionTypes from '@/configs/constructionTypes';
-  import residentialUnits from '@/configs/residentialUnits';
-  import propertyAmendities from '@/configs/amendities';
-  import { regions as varnaNeighbourhoods } from '@/configs/regions/varna';
+  import { currenciesMap as currencyMap } from '@/configs/currencies';
+  import {
+    typesMap as propertyTypesMap,
+    constructionMap as constructionTypesMap,
+    // unitsMap as residentialUnitsMap,
+    amenities as propertyAmenitiesList,
+    amenitiesMap as propertyAmenitiesMap,
+  } from '@/configs/properties';
 
   export default {
-    name: 'PropertyDetails',
+    name: 'PropertySingle',
+    props: {
+      property: {
+        type: Object,
+        default: () => ({}),
+      },
+    },
     data() {
       return {
-        propertyTypes: Object.values(propertyTypes),
-        currencies: Object.values(currencies),
-        constructionTypes: Object.values(constructionTypes),
-        residentialUnits: Object.values(residentialUnits),
-        constructionYearRange: this.generateYearRange(),
-        roomRange: Array.from({ length: 10 }, (_, i) => i + 1),
-        propertyAmendities: Object.values(propertyAmendities).map((item) => ({ ...item, isSet: false })),
-        varnaNeighbourhoods,
-        property: {
-          details: {
-            typeId: null,
-            constructionId: null,
-            constructionYear: null,
-            rooms: null,
-            bedrooms: null,
-            baths: null,
-          },
-          price: {
-            amount: null,
-            currency: null,
-          },
-          measurements: {
-            amount: null,
-            unit: null,
-            isExact: false,
-          },
-          location: {
-            regionId: 1,
-            cityId: 1,
-            neighbourhoodId: null,
-            address: '',
-          },
-          moreDetails: '',
-        }
+        currencyMap,
+        propertyTypesMap,
+        constructionTypesMap,
+        propertyAmenitiesList,
+        propertyAmenitiesMap,
       };
     },
-    created() {
-      this.generateYearRange();
-    },
-    methods: {
-      generateYearRange() {
-        const currentYear = (new Date()).getFullYear();
-        const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
-
-        return range(currentYear, currentYear - 120, -1);
-      },
-      setAmendityStatus(index) {
-        const itemValue = this.propertyAmendities[index].isSet;
-        this.propertyAmendities[index].isSet = !itemValue;
-      },
-      validateProperty() {
-        const nextProperty = {
-          id: uid(),
-          ...this.property,
-          amendities: this.propertyAmendities.filter(({ isSet }) => isSet).map(({ id }) => id),
-        };
-
-        console.log(nextProperty);
+    computed: {
+      availableAmendities() {
+        console.log(this.property.amenities);
+        console.log(this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === 1));
+        return [];
+        // return this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === -1);
       },
     },
   };
 </script>
 
 <template>
-  <div>
-    <div>
-      <h4>Parameters</h4>
+  <div class="px-10 py-8">
+{{ property }}
+    <div class="property__head">
+      <div>
+        <v-card class="mr-5">
+          <v-img
+            :src="property.cover"
+            class="property-image"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+          >
+            <v-card-actions>
+              <div class="pl-2 text-h6 white--text">{{ currencyMap.get(property.priceCurrencyId).symbol }}{{ property.priceAmount }}</div>
+            </v-card-actions>
+          </v-img>
+        </v-card>
+      </div>
+
+      <div>
+        <div>
+          <h2>{{ $t(constructionTypesMap.get(property.typeId).slug) }}</h2>
+        </div>
+        <div class="subtitle-2 mb-5">
+          <ul class="details-list">
+            <li>{{ property.areaValue }}m<sup>2</sup></li>
+            <li>{{ property.bedrooms }} bedrooms</li>
+            <li>{{ property.bathrooms }} bathrooms</li>
+          </ul>
+        </div>
+
+        <div class="mb-2" v-if="$ability.can('list', 'properties')">
+          <v-icon small>mdi-map-marker</v-icon>
+          <span class="font-weight-bold mr-2">Varna</span>
+          <span class="caption">
+            <!-- {{ `${item.street} ${item.streetNum}, entrance: ${item.entrance}, floor: ${item.onFloor}` }} -->
+            address
+          </span>
+        </div>
+
+        <div class="mb-8">
+          <v-icon>mdi-wrench-outline</v-icon>
+          <span class="ml-1 body-2">{{ $t(constructionTypesMap.get(property.constructionId).slug) }}</span>
+        </div>
+
+        <div class="amendities-list">
+          <div
+            v-for="(item, index) in availableAmendities" :key="index"
+            class="mb-2"
+          >
+            <v-icon>{{ `mdi-${propertyAmenitiesMap.get(item).icon}` }}</v-icon>
+            <span class="ml-1 body-2">{{ $t(propertyAmenitiesMap.get(item).slug) }}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <v-container fluid>
-      <v-row>
-        <v-col cols="3">
-          <v-select
-            v-model="property.details.typeId" :items="propertyTypes"
-            item-value="id" :label="$t('property_field_type')"
-            clearable
-          >
-            <template #selection="data">{{ $t(data.item.slug) }}</template>
-            <template #item="data">{{ $t(data.item.slug) }}</template>
-          </v-select>
-        </v-col>
-
-        <v-col cols="3">
-          <v-select
-            v-model="property.details.constructionId" :items="constructionTypes"
-            item-value="id" :label="$t('property_field_construction')"
-            clearable
-          >
-            <template #selection="data">{{ $t(data.item.slug) }}</template>
-            <template #item="data">{{ $t(data.item.slug) }}</template>
-          </v-select>
-        </v-col>
-
-        <v-col cols="2">
-          <v-autocomplete
-            v-model="property.details.constructionYear" :items="constructionYearRange"
-            :label="$t('property_field_year')" clearable
-          />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="4">
-          <v-text-field
-            v-model.number="property.price.amount"
-            :label="$t('property_field_price')" clearable
-            type="number" min="0"
-          />
-        </v-col>
-
-        <v-col cols="2">
-          <v-select
-            v-model="property.price.currency" :items="currencies"
-            item-text="symbol" item-value="id"
-            :label="$t('property_field_currency')"
-          />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="2">
-          <v-autocomplete
-            v-model="property.details.rooms" :items="roomRange"
-            :label="$t('property_field_rooms')" dense
-            type="number" min="1"
-          />
-        </v-col>
-
-        <v-col cols="2">
-          <v-autocomplete
-            v-model="property.details.bedrooms" :items="roomRange"
-            :label="$t('property_field_bedrooms')" dense
-            type="number" min="0"
-          />
-        </v-col>
-
-        <v-col cols="2">
-          <v-autocomplete
-            v-model="property.details.baths" :items="roomRange"
-            :label="$t('property_field_bathrooms')" dense
-            type="number" min="0"
-          />
-        </v-col>
-
-        <v-spacer />
-
-        <v-col cols="2">
-          <v-text-field
-            v-model.number="property.measurements.amount"
-            :label="$t('property_field_area_value')"
-            type="number" min="1"
-            clearable dense
-          />
-        </v-col>
-
-        <v-col cols="2">
-          <v-select
-            v-model="property.measurements.unit" :items="residentialUnits"
-            item-text="shortTitle" item-value="id"
-            :label="$t('property_field_area_unit')" dense
-          />
-        </v-col>
-
-        <v-col>
-          <v-checkbox
-            v-model="property.measurements.isExact"
-            :label="$t('property_field_area_exact_value')" dense
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <div class="my-6">
-      <h4>Amendities</h4>
-    </div>
-
-    <v-container fluid>
-      <v-row>
-        <v-col
-          v-for="(item, index) in propertyAmendities" :key="index"
-          cols="2"
-        >
-          <v-chip
-            medium
-            :outlined="!item.isSet"
-            :color="item.isSet ? 'pink' : 'secondary'"
-            :text-color="item.isSet ? 'white' : 'secondary'"
-            @click.prevent="setAmendityStatus(index)"
-          >
-            <v-icon left small>{{ `mdi-${item.icon}` }}</v-icon>
-            {{ $t(item.slug) }}
-          </v-chip>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <div class="my-6">
-      <h4>Location</h4>
-    </div>
-
-    <v-container fluid>
-      <v-row>
-        <v-col cols="3">
-          <v-select
-            v-model="property.location.regionId" :items="[{ id: 1, label: 'Varna' }]"
-            item-text="label" item-value="id"
-            :label="$t('property_field_region')" dense
-            disabled
-          />
-        </v-col>
-
-        <v-col cols="3">
-          <v-select
-            v-model="property.location.cityId" :items="[{ id: 1, label: 'Varna' }]"
-            item-text="label" item-value="id"
-            :label="$t('property_field_city')" dense
-            disabled
-          />
-        </v-col>
-
-        <v-col cols="4">
-          <v-autocomplete
-            v-model="property.location.neighbourhoodId" :items="varnaNeighbourhoods"
-            item-text="label" item-value="id"
-            :label="$t('property_field_neighbourhood')" dense
-          />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="10">
-          <v-text-field
-            v-model="property.location.address"
-            :label="$t('property_field_address')" dense
-          />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="10">
-          <v-textarea
-            v-model="property.moreDetails"
-            :label="$t('property_field_notes')" dense
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <v-btn @click="validateProperty">Validate</v-btn>
   </div>
 </template>
 
 <style lang="scss">
+  .property {
+    &__head {
+      display: flex;
 
+      .details-list {
+        display: inline;
+        list-style: none;
+        padding: 0;
+
+        li {
+          display: inline;
+
+          &:not(:last-child):after {
+            padding: 0 4px;
+            content: '\2022';
+          }
+        }
+      }
+    }
+  }
 </style>

@@ -1,27 +1,52 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
+  import { isObj, isNum, isStr } from '@/utils';
   import CatalogueGrid from '@/components/CatalogueGrid';
   import BaseDialog from '@/components/dialogs/BaseDialog';
+  import PropertyDetailsPanel from '@/components/panels/PropertyDetails';
 
   export default {
     name: 'PropertiesCatalogue',
-    components: { CatalogueGrid, BaseDialog },
+    components: { CatalogueGrid, BaseDialog, PropertyDetailsPanel },
     data() {
-      return {
+       return {
+        pagination: {
+          descending: false,
+          page: 1,
+          rowsPerPage: 100,
+          sortBy: '',
+          totalItems: 0,
+          search: '',
+        },
+        query: {},
+        totalPages: 0,
+        isLoading: false,
         isDialogOn: false,
       };
     },
     computed: {
       ...mapGetters(
-        { items: 'properties/items' },
+        {
+          items: 'properties/items',
+          activeProperty: 'properties/activeItem',
+        },
       ),
+      hasActiveProperty() {
+        const { activeProperty } = this;
+
+        return isObj(activeProperty)
+          && isNum(activeProperty.id);
+      },
     },
     created() {
       this.getProperties();
     },
     methods: {
       ...mapActions(
-        { getProperties: 'properties/getItems' },
+        {
+          getItems: 'properties/getItems',
+          setActiveItem: 'properties/setActiveItem',
+        },
       ),
       createProperty() {
         this.$router.push({ name: 'propertyCreate' });
@@ -29,8 +54,83 @@
       toggleDialog() {
         this.isDialogOn = !this.isDialogOn;
       },
-      displayPropertyDetails() {
+      displayPropertyDetails(item) {
+        this.setActiveItem(item);
+
         this.isDialogOn = true;
+      },
+      editPropertyDetails(item) {
+        return this.setActiveItem(item)
+          .then(() => {
+            this.$router.push({
+              name: 'property',
+              params: { id: item.id },
+            });
+
+            return item;
+          });
+      },
+      onUpdatePagination({ page, descending, sortBy, rowsPerPage }) {
+        const { query, pagination } = this;
+        const nextQuery = {
+          ...query,
+          page,
+          order: descending ? 'desc' : 'asc',
+          sort: isStr(sortBy) ? sortBy : pagination.sortBy,
+          perPage: rowsPerPage,
+        };
+
+        this.query = nextQuery;
+
+        this.getProperties(nextQuery);
+      },
+      onChangePage(page) {
+        const { query, pagination } = this;
+        const { descending, sortBy } = pagination;
+        const nextQuery = {
+          ...query,
+          page,
+          order: descending ? 'desc' : 'asc',
+          sort: sortBy,
+        };
+
+        this.query = nextQuery;
+
+        this.getProperties(nextQuery);
+      },
+      getProperties({ page = 1, order = 'asc', sort = '', search = '', perPage } = {}) {
+        const query = {
+          page,
+          order,
+          sort,
+          search,
+          perPage,
+        };
+
+        this.isLoading = true;
+        this.pagination.descending = order === 'desc';
+
+        if (sort !== '') {
+          this.pagination.sortBy = sort;
+        }
+
+        this.getItems(query)
+          .then((res) => {
+            const { itemsMeta } = this.$store.getters['properties/itemsData'];
+            const { total, current_page, last_page } = itemsMeta;
+
+            this.isLoading = false;
+
+            this.pagination.page = current_page;
+            this.pagination.totalItems = total;
+            this.totalPages = last_page;
+
+            return res;
+          })
+          .catch((err) => {
+            this.isLoading = false;
+            return err;
+          });
       },
     },
   };
@@ -52,17 +152,20 @@
 
       <CatalogueGrid
         :items="items"
-        show-price show-starred-btn
-        show-details show-location
+        show-price show-details
+        @property:display="displayPropertyDetails"
       />
 
     </div>
 
     <BaseDialog
-      title="Property" icon="mdi-briefcase"
+      v-if="hasActiveProperty"
+      title="test" icon="mdi-briefcase"
       :is-on="isDialogOn" :on-close="toggleDialog"
     >
-      <template #content>Modal Content</template>
+      <template #content>
+        <PropertyDetailsPanel :property="activeProperty" />
+      </template>
     </BaseDialog>
   </LoggedFrame>
 </template>

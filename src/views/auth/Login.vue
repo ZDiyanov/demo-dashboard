@@ -3,18 +3,14 @@
     name: 'Login',
     data() {
       return {
-        email: 'zhkv.se@gmail.com',
+        email: 'p.radev@vivahome.bg',
         password: 'asdasdASD!',
       };
     },
     methods: {
       login() {
-        const data = {
-          email: this.email,
-          password: this.password
-        };
-
-        return this.$store.dispatch('auth/executeLogin', data);
+        const { email, password } = this;
+        return this.$store.dispatch('auth/executeLogin', { email, password });
       },
     },
     metaInfo() {

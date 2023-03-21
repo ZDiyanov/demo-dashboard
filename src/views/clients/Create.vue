@@ -13,13 +13,13 @@
       return {
         client: {
           id: null,
-          type: null,
+          typeId: null,
           firstName: null,
           lastName: null,
           email: null,
           isOwner: false,
           isBroker: false,
-          budgetValue: null,
+          budgetAmount: null,
           budgetCurrencyId: null,
           phonePrefix: '359',
           phoneNumber: null,
@@ -30,28 +30,22 @@
       };
     },
     validations() {
-      return { client: clientValidationSet };
+      return { client: clientValidationSet(this.client) };
     },
     methods: {
       ...mapActions({ createClient: 'clients/createItem' }),
       canSubmitClient() {
         const {
-          type,
-          firstName, lastName,
+          typeId,
           email,
           isOwner, isBroker,
-          budgetValue, budgetCurrencyId,
           phonePrefix, phoneNumber,
         } = this.client;
 
-        return isNum(type)
-          && isStr(firstName)
-          && isStr(lastName)
+        return isNum(typeId)
           && isStr(email)
           && isBool(isOwner)
           && isBool(isBroker)
-          // && isNum(budgetValue)
-          // && isNum(budgetCurrencyId)
           && isStr(phonePrefix)
           && isStr(phoneNumber);
       },
@@ -61,7 +55,7 @@
         if (!this.canSubmitClient() || this.$v.client.$error || this.$v.client.pending) {
           return false;
         }
-console.log(this.client);
+
         this.createClient(this.client)
           .then((res) => {
             console.log('client created!');

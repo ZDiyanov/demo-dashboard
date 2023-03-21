@@ -1,6 +1,6 @@
 <script>
-  import currencies from '@/configs/currencies';
-  import propertyTypes from '@/configs/propertyTypes';
+  import { currenciesMap } from '@/configs/currencies';
+  import { typesMap as propertyTypesMap } from '@/configs/properties';
 
   export default {
     name: 'CatalogueGrid',
@@ -32,13 +32,13 @@
     },
     data() {
       return {
-        currencies,
-        propertyTypes,
+        currenciesMap,
+        propertyTypesMap,
       };
     },
     methods: {
-      goToDetails({ id, ...rest }) {
-        this.$router.push({ name: 'property', params: { id, property: rest }, });
+      displayDetails(item) {
+        this.$emit('property:display', item);
       },
     },
   };
@@ -53,7 +53,7 @@
       >
         <v-card
           class="property-card" elevation="1"
-          @click.prevent="goToDetails(item)"
+          @click.prevent="displayDetails(item)"
         >
           <v-img
             :src="item.cover"
@@ -61,7 +61,7 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           >
             <v-card-actions>
-              <div class="pl-2 text-h6 white--text">{{ $t(propertyTypes[item.propertyTypeId].slug) }}</div>
+              <div class="pl-2 text-h6 white--text">{{ $t(propertyTypesMap.get(item.typeId).slug) }}</div>
               <v-spacer></v-spacer>
               <v-btn v-if="showStarredBtn" icon>
                 <v-icon class="white--text">mdi-pencil</v-icon>
@@ -69,12 +69,12 @@
             </v-card-actions>
           </v-img>
 
-          <v-card-title v-if="showPrice">{{ currencies[item.priceCurrencyId].symbol }}{{ item.priceAmount }}</v-card-title>
+          <v-card-title v-if="showPrice">{{ currenciesMap.get(item.priceCurrencyId).symbol }}{{ item.priceAmount }}</v-card-title>
           <v-card-subtitle v-if="showDetails">
             <ul class="details-list">
-              <li>{{ item.measurementValue }}m<sup>2</sup></li>
-              <li>{{ item.roomCount }} bedrooms</li>
-              <li>{{ item.bathCount }} baths</li>
+              <li>{{ item.areaValue }}m<sup>2</sup></li>
+              <li>{{ item.bedrooms }} bedrooms</li>
+              <li>{{ item.bathrooms }} baths</li>
             </ul>
           </v-card-subtitle>
           <v-card-text v-if="showLocation">

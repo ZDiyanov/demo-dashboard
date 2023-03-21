@@ -1,7 +1,7 @@
+import { propertyService } from '@/services';
 import { isObj, isArr } from '@/utils';
+import { formatPropertyItem } from '@/utils/services';
 import initialState from '@/store/initialState';
-
-import mockedProperties from '@/mocks/properties';
 
 /**
 * @description Is valid
@@ -42,21 +42,49 @@ export const getters = {
 };
 
 const actions = {
-  getItems: ({ commit, state }) => {
+  getItems: ({ commit, state }, query) => (
+    propertyService.getItems(query).then((res) => {
+      const { data, meta } = res.data;
+
+      const nextItems = {
+        items: data.map((item) => formatPropertyItem(item)),
+        itemsMeta: meta,
+      };
+
+      const nextState = {
+        ...state,
+        ...nextItems,
+      };
+
+      commit('SET', nextState);
+
+      return nextItems;
+    })
+  ),
+  getItem: ({ dispatch }, id) => (
+    propertyService.getItem(id).then((res) => {
+      const { data: nextItem } = res.data;
+
+      dispatch('setActiveItem', formatPropertyItem(nextItem));
+
+      return nextItem;
+    })
+  ),
+  createItem: (context, query) => (
+    propertyService.createItem(query).then((res) => res.data.data)
+  ),
+  // updateItem: (context, query) => (
+  //   clientService.updateItem(query).then((res) => res.data.data)
+  // ),
+  setActiveItem: ({ commit, state }, nextActiveItem) => {
     const nextState = {
       ...state,
-      items: mockedProperties,
+      activeItem: nextActiveItem,
     };
 
     commit('SET', nextState);
-  },
-  getItem: ({ commit, state }, id) => {
-    const nextState = {
-      ...state,
-      activeItem: mockedProperties.filter((item) => item.id === id)[0],
-    };
 
-    commit('SET', nextState);
+    return nextActiveItem;
   },
   reset: ({ commit }) => (
     commit('SET', initialState.properties)

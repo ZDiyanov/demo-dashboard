@@ -57,7 +57,7 @@ export default [
     props: true,
   },
   {
-    path: '/property/create',
+    path: '/properties/create',
     name: 'propertyCreate',
     meta: {
       slug: 'view_property_create',

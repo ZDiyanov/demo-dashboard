@@ -1,10 +1,22 @@
 import { required, email, minLength } from 'vuelidate/lib/validators';
 
-export const validationSet = {
-  type: { required },
-  firstName: { required },
-  lastName: { required },
-  email: { required, email },
+export const validationSet = (set) => ({
+  typeId: { required },
+  firstName: set.typeId === 1
+    ? { required }
+    : { required: false },
+  lastName: set.typeId === 1
+    ? { required }
+    : { required: false },
+  companyName: set.typeId === 2
+    ? { required }
+    : { required: false },
+  uicNumber: { required: false },
+  companyAddress: { required: false },
+  email: {
+    required: false,
+    email,
+  },
   phonePrefix: {
     required,
     minLength: minLength(2),
@@ -13,7 +25,7 @@ export const validationSet = {
     required,
     minLength: minLength(6),
   },
-  budgetValue: {
+  budgetAmount: {
     required: false,
   },
   budgetCurrencyId: {
@@ -25,7 +37,7 @@ export const validationSet = {
   isBroker: {
     required: false,
   },
-};
+});
 
 export const columnHeaders = [
   {
