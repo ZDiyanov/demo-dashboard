@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { servicesUrl, maxItemsPerPage, formatClientItem } from '@/utils/services';
+import { servicesUrl, maxItemsPerPage, formatClientPayload } from '@/utils/services';
 
 export const services = {
   getItems(options = {}) {
@@ -39,14 +39,14 @@ export const services = {
     return axios({
       method: 'post',
       url: `${servicesUrl}/clients`,
-      data: { ...formatClientItem(nextItem) },
+      data: { ...formatClientPayload(nextItem) },
     });
   },
   updateItem({ id, ...rest }) {
     return axios({
       method: 'put',
       url: `${servicesUrl}/clients/${id}`,
-      data: { ...formatClientItem(rest) },
+      data: { ...formatClientPayload(rest) },
     });
   },
 };

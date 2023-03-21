@@ -37,7 +37,7 @@ export default {
           icon: 'folder-home',
           route: 'propertiesIndex',
           method: null,
-          disabled: false,
+          disabled: true,
         },
         {
           id: 4,

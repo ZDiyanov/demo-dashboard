@@ -13,11 +13,11 @@ export const servicesUrl = `${location.protocol}//${process.env.VUE_APP_API}/api
 export const maxItemsPerPage = process.env.VUE_APP_API_MAX_ITEMS_PER_PAGE;
 
 /**
- * @description Generate properly formated broker object
+ * @description Generate properly formated broker payload
  * @param item
  * @returns {object}
  */
-export const formatBrokerItem = item => {
+export const formatBrokerPayload = item => {
   const {
     firstName, lastName,
     email,
@@ -40,11 +40,11 @@ export const formatBrokerItem = item => {
 };
 
 /**
- * @description Generate properly formated client object
+ * @description Generate properly formated client payload
  * @param item
  * @returns {object}
  */
-export const formatClientItem = item => {
+export const formatClientPayload = item => {
   const {
     typeId,
     firstName, lastName,
@@ -79,4 +79,84 @@ export const formatClientItem = item => {
   }
 
   return nextClient;
+};
+
+/**
+ * @description Generate properly formated property payload
+ * @param item
+ * @returns {object}
+ */
+export const formatPropertyPayload = item => {
+  const {
+    typeId,
+    constructionId, constructionYear,
+    priceAmount, priceCurrencyId,
+    roomsTotal, bedrooms, bathrooms,
+    areaValue, areaUnitId, areaIsExact,
+    amenities,
+    regionId, cityId, neighbourhoodId,
+    address, notes, cover,
+    brokerId, clientId,
+  } = item;
+
+  return {
+    type_id: typeId,
+    construction_id: constructionId,
+    construction_year: constructionYear,
+    price: priceAmount,
+    currency_id: priceCurrencyId,
+    rooms_total: roomsTotal,
+    bedrooms,
+    bathrooms,
+    area: areaValue,
+    area_unit_id: areaUnitId,
+    area_is_exact: areaIsExact,
+    amenities,
+    region_id: regionId,
+    city_id: cityId,
+    neighbourhood_id: neighbourhoodId,
+    // address,
+    // notes,
+    cover,
+    broker_id: brokerId,
+    client_id: clientId,
+  };
+};
+
+/**
+ * @description Generate properly formated property item
+ * @param item
+ * @returns {object}
+ */
+export const formatPropertyItem = item => {
+  const { id, details, price, measurements, amenities, location, meta } = item;
+  const { typeId, constructionId, constructionYear, roomsTotal, bedrooms, bathrooms, cover, gallery } = details;
+  const { amount: areaValue, unit: areaUnitId, isExact: areaIsExact } = measurements;
+  const { amount: priceAmount, currency: priceCurrencyId } = price;
+  const { regionId, cityId, neighbourhoodId } = location;
+  const { brokerId, clientId, userId } = meta;
+
+  return {
+    id,
+    typeId,
+    constructionId,
+    constructionYear,
+    priceAmount,
+    priceCurrencyId,
+    roomsTotal,
+    bedrooms,
+    bathrooms,
+    areaValue,
+    areaUnitId,
+    areaIsExact,
+    amenities,
+    regionId,
+    cityId,
+    neighbourhoodId,
+    // address,
+    // notes,
+    cover,
+    brokerId,
+    clientId,
+  };
 };
