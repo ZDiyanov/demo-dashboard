@@ -27,8 +27,8 @@
     },
     computed: {
       availableAmendities() {
-        console.log(this.property.amenities);
-        console.log(this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === 1));
+        // console.log(this.property.amenities);
+        // console.log(this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === 1));
         return [];
         // return this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === -1);
       },
