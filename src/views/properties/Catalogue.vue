@@ -1,6 +1,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import { isObj, isNum, isStr } from '@/utils';
+  import { typesMap as propertyTypesMap } from '@/configs/properties';
   import CatalogueGrid from '@/components/CatalogueGrid';
   import BaseDialog from '@/components/dialogs/BaseDialog';
   import PropertyDetailsPanel from '@/components/panels/PropertyDetails';
@@ -10,6 +11,7 @@
     components: { CatalogueGrid, BaseDialog, PropertyDetailsPanel },
     data() {
        return {
+        propertyTypesMap,
         pagination: {
           descending: false,
           page: 1,
@@ -159,8 +161,8 @@
     </div>
 
     <BaseDialog
-      v-if="hasActiveProperty"
-      title="test" icon="mdi-briefcase"
+      v-if="hasActiveProperty && isDialogOn"
+      :title="$t(propertyTypesMap.get(activeProperty.typeId).slug)" icon="mdi-home-city"
       :is-on="isDialogOn" :on-close="toggleDialog"
     >
       <template #content>
