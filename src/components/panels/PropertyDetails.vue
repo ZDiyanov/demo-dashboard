@@ -27,10 +27,7 @@
     },
     computed: {
       availableAmendities() {
-        // console.log(this.property.amenities);
-        // console.log(this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === 1));
-        return [];
-        // return this.propertyAmenitiesList.filter((item) => this.property.amenities.indexOf(item.id) === -1);
+        return this.propertyAmenitiesList.filter((item) => this.property.amenities.includes(item.id));
       },
     },
   };
@@ -38,7 +35,7 @@
 
 <template>
   <div class="px-10 py-8">
-{{ property }}
+
     <div class="property__head">
       <div>
         <v-card class="mr-5">
@@ -85,8 +82,8 @@
             v-for="(item, index) in availableAmendities" :key="index"
             class="mb-2"
           >
-            <v-icon>{{ `mdi-${propertyAmenitiesMap.get(item).icon}` }}</v-icon>
-            <span class="ml-1 body-2">{{ $t(propertyAmenitiesMap.get(item).slug) }}</span>
+            <v-icon>{{ `mdi-${item.icon}` }}</v-icon>
+            <span class="ml-1 body-2">{{ $t(item.slug) }}</span>
           </div>
         </div>
       </div>
