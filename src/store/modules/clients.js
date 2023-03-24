@@ -39,6 +39,10 @@ export const getters = {
   items: ({ items }) => items,
   itemsMeta: ({ itemsMeta }) => itemsMeta,
   itemsData: ({ items, itemsMeta }) => ({ items, itemsMeta }),
+  // DEV NOTE: the slim client list should be available from a backend endpoint
+  slimItems: ({ items }) => items.map(({ id, firstName, lastName, phonePrefix, phoneNumber }) => (
+    { id, firstName, lastName, phonePrefix, phoneNumber }
+  )),
 };
 
 const actions = {

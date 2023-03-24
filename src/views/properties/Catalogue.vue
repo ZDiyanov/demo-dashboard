@@ -31,6 +31,8 @@
         {
           items: 'properties/items',
           activeProperty: 'properties/activeItem',
+          availableClients: 'clients/slimItems',
+          availableBrokers: 'brokers/slimItems',
         },
       ),
       hasActiveProperty() {
@@ -42,12 +44,16 @@
     },
     created() {
       this.getProperties();
+      console.log(this.availableClients);
+      console.log(this.availableBrokers);
     },
     methods: {
       ...mapActions(
         {
           getItems: 'properties/getItems',
           setActiveItem: 'properties/setActiveItem',
+          getClients: 'clients/getItems',
+          getBrokers: 'brokers/getItems',
         },
       ),
       createProperty() {
