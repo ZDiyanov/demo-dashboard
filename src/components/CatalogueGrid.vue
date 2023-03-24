@@ -56,7 +56,7 @@
           @click.prevent="displayDetails(item)"
         >
           <v-img
-            :src="item.cover"
+            src="https://thumbs.rynekpierwotny.pl/2fafa89d:Q6orjJrfdqBlAaxZtBb2JuQrPcc/1160x638/filters:upscale():format(jpg)/articles/gallery/image/1586/f0ab6f.jpg"
             class="property-image"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           >

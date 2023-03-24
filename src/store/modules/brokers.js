@@ -39,6 +39,10 @@ export const getters = {
   items: ({ items }) => items,
   itemsMeta: ({ itemsMeta }) => itemsMeta,
   itemsData: ({ items, itemsMeta }) => ({ items, itemsMeta }),
+  // DEV NOTE: the slim broker list should be available from a backend endpoint
+  slimItems: ({ items }) => items.map(({ id, firstName, lastName }) => (
+    { id, firstName, lastName }
+  )),
 };
 
 const actions = {
