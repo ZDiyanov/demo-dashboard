@@ -1,6 +1,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
-  import { isObj, isNum, isStr } from '@/utils';
+  import { isObj, isNum, isStr, isNonEmptyArr } from '@/utils';
   import { typesMap as propertyTypesMap } from '@/configs/properties';
   import CatalogueGrid from '@/components/CatalogueGrid';
   import BaseDialog from '@/components/dialogs/BaseDialog';
@@ -41,11 +41,28 @@
         return isObj(activeProperty)
           && isNum(activeProperty.id);
       },
+      hasClientList() {
+        return isNonEmptyArr(this.availableClients);
+      },
+      hasBrokerList() {
+        return isNonEmptyArr(this.availableBrokers);
+      },
+      canDisplayPropertyDetails() {
+        return this.hasActiveProperty
+          && this.hasClientList
+          && this.hasBrokerList;
+      }
     },
     created() {
       this.getProperties();
-      console.log(this.availableClients);
-      console.log(this.availableBrokers);
+
+      if (!this.hasClientList) {
+        this.getClients();
+      }
+
+      if (!this.hasClientList) {
+        this.getBrokers();
+      }
     },
     methods: {
       ...mapActions(
@@ -167,7 +184,7 @@
     </div>
 
     <BaseDialog
-      v-if="hasActiveProperty && isDialogOn"
+      v-if="canDisplayPropertyDetails && isDialogOn"
       :title="$t(propertyTypesMap.get(activeProperty.typeId).slug)" icon="mdi-home-city"
       :is-on="isDialogOn" :on-close="toggleDialog"
     >
