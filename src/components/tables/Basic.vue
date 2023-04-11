@@ -33,19 +33,19 @@
       noDataLabel: {
         type: String,
         default() {
-          return 'No data available';
+          return this.$t('data_table_no_results_label');
         },
       },
       loadingLabel: {
         type: String,
         default() {
-          return 'Loading ...';
+          return this.$t('data_table_loading_results_label');
         },
       },
       perPageLabel: {
         type: String,
         default() {
-          return 'per page txt';
+          return this.$t('data_table_records_per_page_label');
         },
       },
       hasCustomItemsTemplate: {
@@ -106,7 +106,7 @@
     @update:page="onUpdatePage"
   >
       <template v-for="column in columns" v-slot:[`header.${column.value}`]>
-        {{ column.text }}
+        {{ $t(column.text) }}
       </template>
 
       <template slot="item" slot-scope="props">

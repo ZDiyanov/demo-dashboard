@@ -160,7 +160,7 @@
     <template v-slot:actions>
       <v-btn elevation="1" @click="createBroker">
         <v-icon>mdi-briefcase-plus</v-icon>
-        Create
+        {{ $t('action_btn_create') }}
       </v-btn>
     </template>
 

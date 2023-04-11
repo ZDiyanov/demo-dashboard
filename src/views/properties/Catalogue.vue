@@ -169,7 +169,7 @@
         @click="createProperty"
       >
         <v-icon>mdi-home-plus</v-icon>
-        Create
+        {{ $t('action_btn_create') }}
       </v-btn>
     </template>
 

@@ -154,6 +154,10 @@
 
 <template>
   <div>
+    <div>
+      <h4>{{ $t('client_field_group_profile') }}</h4>
+    </div>
+
     <v-container fluid>
       <v-row>
         <v-col cols="3">
@@ -172,7 +176,7 @@
 
     <template v-if="isOfTypePerson">
       <div>
-        <h4>Personal</h4>
+        <h4>{{ $t('client_field_group_personal') }}</h4>
       </div>
 
       <v-container fluid>
@@ -198,7 +202,7 @@
 
     <template v-if="isOfTypeCompany">
       <div>
-        <h4>Company details</h4>
+        <h4>{{ $t('client_field_group_company') }}</h4>
       </div>
 
       <v-container fluid>
@@ -233,7 +237,7 @@
     </template>
 
     <div>
-      <h4>Contact</h4>
+      <h4>{{ $t('client_field_group_contact') }}</h4>
     </div>
 
     <v-container fluid>
@@ -265,7 +269,7 @@
     </v-container>
 
     <div>
-      <h4>Budget</h4>
+      <h4>{{ $t('client_field_group_budget') }}</h4>
     </div>
 
     <v-container fluid>

@@ -16,6 +16,10 @@
   "menu_item_settings_index": "Настройки",
   "menu_item_action_logout": "Изход",
 
+  "data_table_no_results_label": "Няма налични резултати",
+  "data_table_loading_results_label": "Зареждане ...",
+  "data_table_records_per_page_label": "Резултати на страница",
+
   "currency_euro": "Евро",
   "currency_euro_short": "EU",
   "currency_dollar": "Долар",
@@ -48,6 +52,15 @@
   "view_broker_create": "Създаване на брокер",
   "view_broker_edit": "Редактиране на брокер",
 
+  "broker_list_column_name": "Име",
+  "broker_list_column_position": "Позиция",
+  "broker_list_column_email": "Имейл",
+  "broker_list_column_phone": "Телефон",
+
+  "broker_field_group_personal": "Лични данни",
+  "broker_field_group_contact": "Kонтакти",
+  "broker_field_group_account": "Акаунт",
+
   "broker_field_first_name": "Име",
   "broker_field_last_name": "Фамилия",
   "broker_field_email": "Имейл",
@@ -56,6 +69,17 @@
   "broker_field_role": "Акаунт роля",
   "broker_field_status": "Акаунт статус",
   "broker_field_position": "Тип на служителя",
+
+  "client_list_column_name": "Име",
+  "client_list_column_position": "Тип",
+  "client_list_column_email": "Имейл",
+  "client_list_column_phone": "Телефон",
+
+  "client_field_group_profile": "Профил",
+  "client_field_group_personal": "Лични данни",
+  "client_field_group_company": "Фирмени данни",
+  "client_field_group_contact": "Контакти",
+  "client_field_group_budget": "Бюджет",
 
   "client_field_type": "Тип",
   "client_field_first_name": "Име",
@@ -130,5 +154,8 @@
   "account_status_archived": "Архивиран",
 
   "client_type_person": "Физическо лице",
-  "client_type_company": "Юридическо лице"
+  "client_type_company": "Юридическо лице",
+
+  "action_btn_create": "Създай",
+  "action_btn_save": "Запиши"
 }

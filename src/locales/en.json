@@ -16,6 +16,10 @@
   "menu_item_settings_index": "Settings",
   "menu_item_action_logout": "Logout",
 
+  "data_table_no_results_label": "No results available",
+  "data_table_loading_results_label": "Loading ...",
+  "data_table_records_per_page_label": "Results per page",
+
   "currency_euro": "Euro",
   "currency_euro_short": "EU",
   "currency_dollar": "Dollar",
@@ -48,6 +52,15 @@
   "view_broker_create": "Create New Broker",
   "view_broker_edit": "Edit Broker",
 
+  "broker_list_column_name": "Name",
+  "broker_list_column_position": "Position",
+  "broker_list_column_email": "Email",
+  "broker_list_column_phone": "Phone",
+
+  "broker_field_group_personal": "Personal",
+  "broker_field_group_contact": "Contact",
+  "broker_field_group_account": "Account",
+
   "broker_field_first_name": "First name",
   "broker_field_last_name": "Last name",
   "broker_field_email": "Email",
@@ -56,6 +69,17 @@
   "broker_field_role": "Account role",
   "broker_field_status": "Account Status",
   "broker_field_position": "Broker position",
+
+  "client_list_column_name": "Name",
+  "client_list_column_type": "Position",
+  "client_list_column_email": "Email",
+  "client_list_column_phone": "Phone",
+
+  "client_field_group_profile": "Profile",
+  "client_field_group_personal": "Personal",
+  "client_field_group_company": "Company details",
+  "client_field_group_contact": "Contact",
+  "client_field_group_budget": "Budget",
 
   "client_field_type": "Type",
   "client_field_first_name": "First name",
@@ -130,5 +154,8 @@
   "account_status_archived": "Archived",
 
   "client_type_person": "Person",
-  "client_type_company": "Company"
+  "client_type_company": "Company",
+
+  "action_btn_create": "Create",
+  "action_btn_save": "Save"
 }

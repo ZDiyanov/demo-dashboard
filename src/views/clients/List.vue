@@ -160,7 +160,7 @@
     <template v-slot:actions>
       <v-btn elevation="1" @click="createClient">
         <v-icon>mdi-account-plus</v-icon>
-        Create
+        {{ $t('action_btn_create') }}
       </v-btn>
     </template>
 

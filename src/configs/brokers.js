@@ -24,25 +24,25 @@ export const validationSet = {
 export const columnHeaders = [
   {
     type: 'name',
-    text: 'Name',
+    text: 'broker_list_column_name',
     sortable: false,
     value: 'firstname', // check this
   },
   {
     type: 'position',
-    text: 'Position',
+    text: 'broker_list_column_position',
     sortable: false,
     value: 'position', // check this
   },
   {
     type: 'email',
-    text: 'Email',
+    text: 'broker_list_column_email',
     sortable: false,
     value: 'email',
   },
   {
     type: 'phone',
-    text: 'Phone',
+    text: 'broker_list_column_phone',
     sortable: false,
     value: 'phone', // check this
   },
