@@ -57,6 +57,10 @@
   "broker_list_column_email": "Email",
   "broker_list_column_phone": "Phone",
 
+  "broker_field_group_personal": "Personal",
+  "broker_field_group_contact": "Contact",
+  "broker_field_group_account": "Account",
+
   "broker_field_first_name": "First name",
   "broker_field_last_name": "Last name",
   "broker_field_email": "Email",
@@ -70,6 +74,12 @@
   "client_list_column_type": "Position",
   "client_list_column_email": "Email",
   "client_list_column_phone": "Phone",
+
+  "client_field_group_profile": "Profile",
+  "client_field_group_personal": "Personal",
+  "client_field_group_company": "Company details",
+  "client_field_group_contact": "Contact",
+  "client_field_group_budget": "Budget",
 
   "client_field_type": "Type",
   "client_field_first_name": "First name",
@@ -144,5 +154,8 @@
   "account_status_archived": "Archived",
 
   "client_type_person": "Person",
-  "client_type_company": "Company"
+  "client_type_company": "Company",
+
+  "action_btn_create": "Create",
+  "action_btn_save": "Save"
 }

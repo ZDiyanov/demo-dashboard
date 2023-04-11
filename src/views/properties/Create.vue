@@ -85,7 +85,7 @@
     <template v-slot:actions>
       <v-btn elevation="1" @click="savePropertyData">
         <v-icon>mdi-content-save-outline</v-icon>
-        Save
+        {{ $t('action_btn_save') }}
       </v-btn>
     </template>
 

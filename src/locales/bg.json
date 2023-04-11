@@ -57,6 +57,10 @@
   "broker_list_column_email": "Имейл",
   "broker_list_column_phone": "Телефон",
 
+  "broker_field_group_personal": "Лични данни",
+  "broker_field_group_contact": "Kонтакти",
+  "broker_field_group_account": "Акаунт",
+
   "broker_field_first_name": "Име",
   "broker_field_last_name": "Фамилия",
   "broker_field_email": "Имейл",
@@ -70,6 +74,12 @@
   "client_list_column_position": "Тип",
   "client_list_column_email": "Имейл",
   "client_list_column_phone": "Телефон",
+
+  "client_field_group_profile": "Профил",
+  "client_field_group_personal": "Лични данни",
+  "client_field_group_company": "Фирмени данни",
+  "client_field_group_contact": "Контакти",
+  "client_field_group_budget": "Бюджет",
 
   "client_field_type": "Тип",
   "client_field_first_name": "Име",
@@ -144,5 +154,8 @@
   "account_status_archived": "Архивиран",
 
   "client_type_person": "Физическо лице",
-  "client_type_company": "Юридическо лице"
+  "client_type_company": "Юридическо лице",
+
+  "action_btn_create": "Създай",
+  "action_btn_save": "Запиши"
 }

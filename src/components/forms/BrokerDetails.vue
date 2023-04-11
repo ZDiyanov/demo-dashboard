@@ -144,7 +144,7 @@
 <template>
   <div>
     <div>
-      <h4>Personal</h4>
+      <h4>{{ $t('broker_field_group_personal') }}</h4>
     </div>
 
     <v-container fluid>
@@ -168,7 +168,7 @@
     </v-container>
 
     <div>
-      <h4>Contact</h4>
+      <h4>{{ $t('broker_field_group_contact') }}</h4>
     </div>
 
     <v-container fluid>
@@ -200,7 +200,7 @@
     </v-container>
 
     <div>
-      <h4>Account</h4>
+      <h4>{{ $t('broker_field_group_account') }}</h4>
     </div>
 
     <v-container fluid>
