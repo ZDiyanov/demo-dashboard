@@ -42,25 +42,25 @@ export const validationSet = (set) => ({
 export const columnHeaders = [
   {
     type: 'name',
-    text: 'Name',
+    text: 'client_list_column_name',
     sortable: false,
     value: 'name', // check this
   },
   {
     type: 'type',
-    text: 'Type',
+    text: 'client_list_column_position',
     sortable: false,
     value: 'typeId',
   },
   {
     type: 'email',
-    text: 'Email',
+    text: 'client_list_column_email',
     sortable: false,
     value: 'email',
   },
   {
     type: 'phone',
-    text: 'Phone',
+    text: 'client_list_column_phone',
     sortable: false,
     value: 'phone', // check this
   },
